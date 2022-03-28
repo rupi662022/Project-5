@@ -3,10 +3,11 @@
 //using System.Linq;
 //using System.Text;
 //using System.Web;
+//using PROJECT_5.Models.DAL;
 ////using IronOcr;
 //using System.Text.RegularExpressions;
 
-//namespace FINAL_PROJECT4.Models
+//namespace PROJECT_5.Models
 //{
 //    public class OCR
 //    {
@@ -20,7 +21,7 @@
 //        public OCR()
 //        {
 
-            //TEST
+//TEST
 
 //        }
 

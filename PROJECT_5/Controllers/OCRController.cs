@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FINAL_PROJECT4.Models;
+using PROJECT_5.Models;
 
-namespace FINAL_PROJECT4.Controllers
+namespace PROJECT_5.Controllers
 {
     public class OCRController : ApiController
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using FINAL_PROJECT4.Models.DAL;
+using PROJECT_5.Models.DAL;
 
-namespace FINAL_PROJECT4.Models
+namespace PROJECT_5.Models
 {
     public class GatePass
     {

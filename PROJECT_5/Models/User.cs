@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using FINAL_PROJECT4.Models.DAL;
+using PROJECT_5.Models.DAL;
 
-namespace FINAL_PROJECT4.Models
+namespace PROJECT_5.Models
 {
     public class User
     {
@@ -32,13 +32,18 @@ namespace FINAL_PROJECT4.Models
         public string UserType { get => userType; set => userType = value; }
 
 
-        //public int InsertUser()
-        //{
-        //    DataServices ds = new DataServices();
-        //    int status = ds.InsertUser(this);
-        //    return status;
-        //}
+        public void InsertUser()
+        {
+            DataServices ds = new DataServices();
+            ds.InsertUser(this);
+        }
+        public User Read(string email)
+        {
 
+            DataServices ds = new DataServices();
+            return ds.ReadUser(email);
+
+        }
 
 
 

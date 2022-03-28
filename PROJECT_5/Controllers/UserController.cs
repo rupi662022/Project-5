@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FINAL_PROJECT4.Models;
+using PROJECT_5.Models;
 
-namespace FINAL_PROJECT4.Controllers
+namespace PROJECT_5.Controllers
 {
     public class UserController : ApiController
     {
@@ -17,15 +17,21 @@ namespace FINAL_PROJECT4.Controllers
         }
 
         // GET: api/User/5
-        public string Get(int id)
+        public User Get(string email)
         {
-            return "value";
+            User U = new User();
+            return U.Read(email);
         }
 
-        // POST: api/User
+        //POST: api/User
+        public HttpResponseMessage Post([FromBody] User user)
+        {
+            user.InsertUser();
+            return Request.CreateResponse(HttpStatusCode.Created, "GOOD");
+        }
         //public int Post([FromBody] User user)
         //{
-        //    //return user.InsertUser();
+        //    return user.InsertUser();
         //}
 
         // PUT: api/User/5

@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="rtl">
 <head>
+
+	<script src="../Scripts/ajaxCalls.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -20,8 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
 	<link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/pages/login-register.css">
 	<link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
-	<script src="../Scripts/ajaxCallsWithKey.js"></script>
-	<script src="../Scripts/ajaxCalls.js"></script>
+
 
 	<script>
 
@@ -35,19 +36,19 @@
 
 
 		function submitUser() {
-            let userNum = $("#userNum").val();
-            let userFull = $("#userFull").val();
+			let userNum = $("#userNum").val();
+			let userFull = $("#userFull").val();
 			let email = $("#email").val();
 			let password = $("#password").val();
 
 			adduser = {
-                UserID: userNum,
-                UserName: userFull,
-                UserEmail: email,
-                UserPassword: password
+				UserID: userNum,
+				UserName: userFull,
+				UserEmail: email,
+				UserPassword: password
 			}
 
-            ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
+			ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
 			document.getElementById("myForm").reset();
 			return false;
 
