@@ -17,11 +17,11 @@ namespace PROJECT_5.Controllers
         }
 
         // GET: api/User/5
-        //public User Get(string email)
-        //{
-        //    User U = new User();
-        //    return U.Read(email);
-        //}
+        public User Get(string email)
+        {
+            User U = new User();
+            return U.ReadUser(email);
+        }
 
         //POST: api/User
         //public HttpResponseMessage Post([FromBody] User user)
