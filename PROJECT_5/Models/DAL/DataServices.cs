@@ -56,7 +56,16 @@ namespace PROJECT_5.Models.DAL
 
         private SqlCommand CreateInsertUser(User user, SqlConnection con)
         {
+<<<<<<< HEAD
             throw new NotImplementedException();
+=======
+            string insertStr = "INSERT INTO SHAY_User ([USR_Id],[USR_UserName],[USR_Email],[USR_Password],USR_Type) " +
+                "VALUES('" + user.UserID + "','" + user.UserName + "','" + user.UserEmail + "','" + user.UserPassword + "','" + user.UserType + "')";
+            SqlCommand command = new SqlCommand(insertStr, con);
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandTimeout = 30;
+            return command;
+>>>>>>> b126fda96eb08b2a8a45c92140bab2099abc6cfa
         }
 
         public int InsertGatePass(GatePass g)

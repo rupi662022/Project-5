@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronOcr, Version=2022.3.0.0, Culture=neutral, PublicKeyToken=c2cbcea5ea3f6d8d, processorArchitecture=MSIL">
+      <HintPath>packages\IronOcr.2022.3.0\lib\net40\IronOcr.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -5601,6 +5604,7 @@
     <Content Include="Pages\login.html" />
     <Content Include="Pages\ManageGates.html" />
     <Content Include="Pages\Old.html" />
+    <Content Include="Pages\recover-password.html" />
     <Content Include="Pages\register.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\ajaxCallsWithKey.js" />
@@ -6231,7 +6235,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets'))" />
   </Target>
+  <Import Project="packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets" Condition="Exists('packages\IronOcr.Languages.Hebrew.2020.11.2\build\IronOcr.Languages.Hebrew.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
