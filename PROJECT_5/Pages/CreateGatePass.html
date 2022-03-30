@@ -23,42 +23,52 @@
     <script src="../Scripts/jquery.min.js"></script>
     <script>
 
-        //$(document).ready(function () {
-        //    $("#myForm").submit(submitGatePass)
-        //})
-        //function ChangeValue()() {
-        //    var x = document.getElementById("mySelect").value;
-        //    document.getElementById("demo").innerHTML = "You selected: " + x;
-        //}
 
+        $(document).ready(function () {
+            $("#SendToMaintinance").click(f1);
+            $("#ReturnedFromMaintinance").click(f2);
 
-
-        $("#SendToMaintinance").on('change', function () {    // 2nd (A)
-            $('#SendToMaintinance').val('+');
         });
 
-        console.log($('#SendToMaintinance').val('+'));
+
         
-        //$('#SendToMaintinance').change(function () {
-        //    cb = $(this);
-        //    cb.val(cb.val('+'));
-        //});
 
+        //function f1() {
+        //    CH1 = document.querySelectorAll('input[type="text"]').values;
+        //    for(i<0)
 
+        //    if (CH1 == '-') {
+        //        $('#SendToMaintinance').val('+')
+        //    }
+        //    else {
+        //        $('#SendToMaintinance').val('-')
+        //    }
+        //}
 
-        //$('#ReturnedFromMaintinance').change(function () {
-        //    cb = $(this);
-        //    cb.val(('+'));
-        //});
+        function f1() {
+            CH1 = document.getElementById("SendToMaintinance").value;
 
-/*        console.log(ReturnedFromMaintinance);*/
+            if (CH1 == '-') {
+                $('#SendToMaintinance').val('+')
+            }
+            else {
+                $('#SendToMaintinance').val('-')
+            }
+        }
+        function f2() {
+            CH2 = document.getElementById("ReturnedFromMaintinance").value;
+                if (CH2 == '-') {
+                    $('#ReturnedFromMaintinance').val('+')
+                }
+                else {
+                    $('#ReturnedFromMaintinance').val('-')
+                }
+            }
 
         function submitGatePass() {
 
 
             //let email = localStorage["email"];
-            ////email = email.replace(/"/g, '');
-
 
             var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
             let gatePass = {
@@ -431,7 +441,8 @@
     </footer>
 
     <!-- BEGIN VENDOR JS-->
-    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <!--<script src="../../../app-assets/vendors/js/vendors.min.js"></script>-->
+    <script src="../app-assets/vendors/js/vendors.min.js"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>

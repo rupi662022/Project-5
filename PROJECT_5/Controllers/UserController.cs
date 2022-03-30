@@ -24,11 +24,11 @@ namespace PROJECT_5.Controllers
         //}
 
         //POST: api/User
-        public HttpResponseMessage Post([FromBody] User user)
-        {
-            user.InsertUser();
-            return Request.CreateResponse(HttpStatusCode.Created, "GOOD");
-        }
+        //public HttpResponseMessage Post([FromBody] User user)
+        //{
+        //    user.InsertUser();
+        //    return Request.CreateResponse(HttpStatusCode.Created, "GOOD");
+        //}
         //public int Post([FromBody] User user)
         //{
         //    return user.InsertUser();

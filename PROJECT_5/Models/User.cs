@@ -32,11 +32,11 @@ namespace PROJECT_5.Models
         public string UserType { get => userType; set => userType = value; }
 
 
-        public void InsertUser()
-        {
-            DataServices ds = new DataServices();
-            ds.InsertUser(this);
-        }
+        //public void InsertUser()
+        //{
+        //    DataServices ds = new DataServices();
+        //    ds.InsertUser(this);
+        //}
         //public User Read(string email)
         //{
 
