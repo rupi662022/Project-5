@@ -37,20 +37,18 @@
         { Name: "Brazil", Id: 5 },
         { Name: "China", Id: 6 },
         { Name: "Russia", Id: 7 }
-        { Name: "Israel", Id: 8 }
-
     ];
 
     db.clients = [
         {
-            "Name": "Itay",
+            "Name": "Otto Clay",
             "Age": 61,
             "Country": 6,
             "Address": "Ap #897-1459 Quam Avenue",
             "Married": false
         },
         {
-            "Name": "Test",
+            "Name": "Connor Johnston",
             "Age": 73,
             "Country": 7,
             "Address": "Ap #370-4647 Dis Av.",
