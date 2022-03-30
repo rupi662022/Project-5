@@ -28,6 +28,7 @@ namespace PROJECT_5.Models.DAL
             return con;
         }
 
+<<<<<<< HEAD
         //        public void InsertUser(User user)
         //        {
         //            SqlConnection con = null;
@@ -67,6 +68,44 @@ namespace PROJECT_5.Models.DAL
         //            return command;
         ////>>>>>>> b126fda96eb08b2a8a45c92140bab2099abc6cfa
         //        }
+=======
+        public void InsertUser(User user)
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand command = CreateInsertUser(user, con);
+                command.ExecuteNonQuery();
+                //string emailExist=;
+                //if (emailExist == user.UserEmail)
+                //    UsersList = new List<User>();
+                //UsersList.Add(user);
+                //return affected;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed in Insert user", ex);
+            }
+
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private SqlCommand CreateInsertUser(User user, SqlConnection con)
+        {
+            throw new NotImplementedException();
+            string insertStr = "INSERT INTO SHAY_User ([USR_Id],[USR_UserName],[USR_Email],[USR_Password],USR_Type) " +
+                "VALUES('" + user.UserID + "','" + user.UserName + "','" + user.UserEmail + "','" + user.UserPassword + "','" + user.UserType + "')";
+            SqlCommand command = new SqlCommand(insertStr, con);
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandTimeout = 30;
+            return command;
+        }
+>>>>>>> 37608bb11f5e59fa402de06a9162aa402409c3b0
 
         public int InsertGatePass(GatePass g)
         {
@@ -140,65 +179,65 @@ namespace PROJECT_5.Models.DAL
 
         //כניסה לאתר
 
-        //public User ReadUser(string email)
-        //{
+        public User ReadUser(string email)
+        {
 
-        //    SqlConnection con = null;
+            SqlConnection con = null;
 
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        SqlCommand selectCommand = createSelectCommandUser(con, email);
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = createSelectCommandUser(con, email);
 
-        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-        //        User u = new User();
-        //        dataReader.Read();
-        //        u.UserID = Convert.ToInt32(dataReader["USR_Id"]);
-        //        u.UserEmail = (string)dataReader["USR_Email"];
-        //        u.UserPassword = (string)dataReader["USR_Password"];
-        //        u.UserName = (string)dataReader["USR_UserName"];
-        //        u.UserType = (string)dataReader["USR_Type"];
+                User u = new User();
+                dataReader.Read();
+                u.UserID = Convert.ToInt32(dataReader["USR_Id"]);
+                u.UserEmail = (string)dataReader["USR_Email"];
+                u.UserPassword = (string)dataReader["USR_Password"];
+                u.UserName = (string)dataReader["USR_UserName"];
+                u.UserType = (string)dataReader["USR_Type"];
 
-        //        dataReader.Close();
+                dataReader.Close();
 
-        //        return u;
-        //    }
-        //    catch (Exception ex)
-        //    {
+                return u;
+            }
+            catch (Exception ex)
+            {
 
-        //        throw new Exception("failed in reading of Users", ex);
-        //    }
-        //    finally
-        //    {
+                throw new Exception("failed in reading of Users", ex);
+            }
+            finally
+            {
 
-        //        if (con != null)
-        //            con.Close();
-        //    }
+                if (con != null)
+                    con.Close();
+            }
 
-        //}
-        //private SqlCommand createSelectCommandUser(SqlConnection con, string email)
-        //{
-        //    string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email =@email";
-        //    SqlCommand cmd = CreateCommand(con, commandStr);
-        //    //cmd.Parameters.AddWithValue("@email", email);
-        //    cmd.Parameters.Add("@email", SqlDbType.NVarChar);
-        //    cmd.Parameters["@email"].Value = email;
-        //    return cmd;
-        //}
-
-
+        }
+        private SqlCommand createSelectCommandUser(SqlConnection con, string email)
+        {
+            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email =@email";
+            SqlCommand cmd = createCommand(con, commandStr);
+            //cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.Add("@email", SqlDbType.NVarChar);
+            cmd.Parameters["@email"].Value = email;
+            return cmd;
+        }
 
 
-        //SqlCommand createCommand(SqlConnection con, string CommandSTR)
-        //{
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = con;
-        //    cmd.CommandText = CommandSTR;
-        //    cmd.CommandType = System.Data.CommandType.Text;
-        //    cmd.CommandTimeout = 5;
-        //    return cmd;
-        //}
+
+
+        SqlCommand createCommand(SqlConnection con, string CommandSTR)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = CommandSTR;
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandTimeout = 5;
+            return cmd;
+        }
 
 
 
