@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PROJECT_5.Models;
+using IronOcr;
 
 namespace PROJECT_5.Controllers
 {
@@ -17,9 +18,10 @@ namespace PROJECT_5.Controllers
         }
 
         // GET: api/OCR/5
-        public string Get(int id)
+        public string Get(string filename)
         {
-            return "value";
+            OCR newOCR = new OCR();
+            return newOCR.getContNumbs(filename);
         }
 
         // POST: api/OCR
