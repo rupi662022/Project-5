@@ -183,6 +183,7 @@
     <Content Include="Pages\login.html" />
     <Content Include="Pages\ManageGates.html" />
     <Content Include="Pages\Old.html" />
+    <Content Include="Pages\recover-password.html" />
     <Content Include="Pages\register.html" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\ajaxCallsWithKey.js" />

@@ -48,8 +48,8 @@ namespace PROJECT_5.Models.DAL
 
         SqlCommand CreateInsertUser(User user, SqlConnection con)
         {
-            string insertStr = "INSERT INTO SHAY_User ([USR_Id],[USR_UserName],[USR_Email],[USR_Password]) " +
-                "VALUES('" + user.UserID + "','" + user.UserName + "','" + user.UserEmail + "','" + user.UserPassword + "')";
+            string insertStr = "INSERT INTO SHAY_User ([USR_Id],[USR_UserName],[USR_Email],[USR_Password],USR_Type) " +
+                "VALUES('" + user.UserID + "','" + user.UserName + "','" + user.UserEmail + "','" + user.UserPassword + "','" + user.UserType + "')";
             SqlCommand command = new SqlCommand(insertStr, con);
             command.CommandType = System.Data.CommandType.Text;
             command.CommandTimeout = 30;

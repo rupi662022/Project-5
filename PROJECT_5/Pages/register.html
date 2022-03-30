@@ -40,12 +40,14 @@
 			let userFull = $("#userFull").val();
 			let email = $("#email").val();
 			let password = $("#password").val();
+            let companyId = $("#userType").val();
 
 			adduser = {
 				UserID: userNum,
 				UserName: userFull,
 				UserEmail: email,
-				UserPassword: password
+				UserPassword: password,
+				UserType: companyId
 			}
 
 			ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
@@ -63,6 +65,7 @@
 		function postECB(err) {
 			console.log(err);
 			alert("Please Try Registration Again");
+            window.location.href = "register.html";
 		}
 	</script>
 
@@ -113,24 +116,31 @@
 							<div class="row">
 								<div class="col-12 col-sm-12 col-md-12">
 									<fieldset class="form-group position-relative has-icon-left">
-				                        <input type="text" name="first_name" id="userNum" class="form-control input-lg" placeholder="תעודת זהות" tabindex="1" required>
-				                        <div class="form-control-position">
-										    <i class="ft-user"></i>
+										<input type="text" name="first_name" id="userNum" class="form-control input-lg" placeholder="תעודת זהות" tabindex="1" required>
+										<div class="form-control-position">
+											<i class="ft-user-check"></i>
 										</div>
 									</fieldset>
 								</div>
 							</div>
 							<fieldset class="form-group position-relative has-icon-left">
-								<input type="text" name="display_name" id="userFull" class="form-control input-lg" placeholder="שם מלא" tabindex="3"  required>
+								<input type="text" name="display_name" id="userFull" class="form-control input-lg" placeholder="שם מלא" tabindex="3" required>
 								<div class="form-control-position">
-								    <i class="ft-user"></i>
+									<i class="ft-user"></i>
 								</div>
 								<div class="help-block font-small-3"></div>
 							</fieldset>
 							<fieldset class="form-group position-relative has-icon-left">
-								<input type="email" name="email" id="email" class="form-control input-lg" placeholder="כתובת אימייל" tabindex="4"  required>
+								<input type="email" name="email" id="email" class="form-control input-lg" placeholder="כתובת אימייל" tabindex="4" required>
 								<div class="form-control-position">
-								    <i class="ft-mail"></i>
+									<i class="ft-mail"></i>
+								</div>
+								<div class="help-block font-small-3"></div>
+							</fieldset>
+							<fieldset class="form-group position-relative has-icon-left">
+								<input type="text" name="userType" id="userType" class="form-control input-lg" placeholder="מספר חברה" tabindex="4" required>
+								<div class="form-control-position">
+									<i class="ft-shield"></i>
 								</div>
 								<div class="help-block font-small-3"></div>
 							</fieldset>
@@ -139,7 +149,7 @@
 									<fieldset class="form-group position-relative has-icon-left">
 										<input type="password" name="password" id="password" class="form-control input-lg" placeholder="סיסמה" tabindex="5" required>
 										<div class="form-control-position">
-										    <i class="fa fa-key"></i>
+											<i class="fa fa-key"></i>
 										</div>
 										<div class="help-block font-small-3"></div>
 									</fieldset>
