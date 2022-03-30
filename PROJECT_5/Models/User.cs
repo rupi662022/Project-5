@@ -37,13 +37,13 @@ namespace PROJECT_5.Models
             DataServices ds = new DataServices();
             ds.InsertUser(this);
         }
-        public User Read(string email)
-        {
+        //public User Read(string email)
+        //{
 
-            DataServices ds = new DataServices();
-            return ds.ReadUser(email);
+        //    DataServices ds = new DataServices();
+        //    return ds.ReadUser(email);
 
-        }
+        //}
 
 
 

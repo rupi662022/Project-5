@@ -17,58 +17,86 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
-
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/ajaxCallsWithKey.js"></script>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/jquery.min.js"></script>
     <script>
 
         //$(document).ready(function () {
         //    $("#myForm").submit(submitGatePass)
         //})
+        //function ChangeValue()() {
+        //    var x = document.getElementById("mySelect").value;
+        //    document.getElementById("demo").innerHTML = "You selected: " + x;
+        //}
 
+
+
+        $("#SendToMaintinance").on('change', function () {    // 2nd (A)
+            $('#SendToMaintinance').val('+');
+        });
+
+        console.log($('#SendToMaintinance').val('+'));
+        
+        //$('#SendToMaintinance').change(function () {
+        //    cb = $(this);
+        //    cb.val(cb.val('+'));
+        //});
+
+
+
+        //$('#ReturnedFromMaintinance').change(function () {
+        //    cb = $(this);
+        //    cb.val(('+'));
+        //});
+
+/*        console.log(ReturnedFromMaintinance);*/
 
         function submitGatePass() {
 
 
-                //let email = localStorage["email"];
-                ////email = email.replace(/"/g, '');
+            //let email = localStorage["email"];
+            ////email = email.replace(/"/g, '');
 
 
-                var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-                let gatePass = {
-                    ContainerNum: document.getElementById("ContainerNum").value,
-                    ContainerType: document.getElementById("ContType").value,
-                    TransportCompany: document.getElementById("TransportCompName").value,
-                    Importer: document.getElementById("ImporterName").value,
-                    CustomsBroker: document.getElementById("CustomAgentName").value,
-                    ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
-                    StorageCertificate: document.getElementById("StorageCertificate").value,
-                    CaseNumber: document.getElementById("AccountIDNum").value,
-                    Note: document.getElementById("Comments").value,
-                    OfficeNote: document.getElementById("OfficeComents").value,
-                    GoToRepair: document.getElementById("SendToMaintinance").value,
-                    ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
-                    UserEmail: document.getElementById("WorkerEmail").value,
-                    IsActive: '1',
-                    CreatedDate: sqlDatetime
-                }
-
-
-                ajaxCall("POST", "../api/GatePass", JSON.stringify(gatePass), postSuccessCB, postErrorCB);
-                 document.getElementById("myForm").reset();
-                return false;
-
-
+            var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            let gatePass = {
+                ContainerNum: document.getElementById("ContainerNum").value,
+                ContainerType: document.getElementById("ContType").value,
+                TransportCompany: document.getElementById("TransportCompName").value,
+                Importer: document.getElementById("ImporterName").value,
+                CustomsBroker: document.getElementById("CustomAgentName").value,
+                ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
+                StorageCertificate: document.getElementById("StorageCertificate").value,
+                CaseNumber: document.getElementById("AccountIDNum").value,
+                Note: document.getElementById("Comments").value,
+                OfficeNote: document.getElementById("OfficeComents").value,
+                GoToRepair: document.getElementById("SendToMaintinance").value,
+                ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
+                UserEmail: document.getElementById("WorkerEmail").value,
+                IsActive: '1',
+                CreatedDate: sqlDatetime
             }
 
 
+            ajaxCall("POST", "../api/GatePass", JSON.stringify(gatePass), postSuccessCB, postErrorCB);
+
+            return false;
 
 
-            function postSuccessCB() {
-                console.log("success");
-            }
+        }
+
+
+
+
+        function postSuccessCB() {
+            console.log("success");
+        }
 
         function postErrorCB(err) {
-                alert(err.responseJSON.ExceptionMessage);
-            }
+            alert(err);
+        }
 
 
 
@@ -329,18 +357,18 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
                                                         
-                                                            <label class="col-md-3 label-control " for="SendToMaintinance">יצא לתיקון</label>
+                                                            <label class="col-md-3 label-control "  for="SendToMaintinance">יצא לתיקון</label>
                                                             <div class="col-md-9">
-                                                                <input type="checkbox"  name="SendToMaintinance" id="SendToMaintinance">
+                                                                <input type="checkbox" VALUE="-"  name="SendToMaintinance" id="SendToMaintinance">
                                                             </div>
                                                         
                                                         </div>
 
                                                     <div class="form-group row">
 
-                                                        <label class="col-md-3 label-control " for="ReturnedFromMaintinance">חזר מתיקון</label>
+                                                        <label class="col-md-3 label-control "   for="ReturnedFromMaintinance">חזר מתיקון</label>
                                                         <div class="col-md-9">
-                                                            <input type="checkbox" name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
+                                                            <input type="checkbox"  VALUE="-"  name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
                                                         </div>
                                                     </div>
 
@@ -367,7 +395,7 @@
                                             <button type="button" class="btn btn-warning mr-1">
                                                 <i class="ft-x"></i> Cancel
                                             </button>
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit"  onclick="submitGatePass()" class="btn btn-primary">
                                                 <i class="fa fa-check-square-o"></i> Save
                                             </button>
                                         </div>
