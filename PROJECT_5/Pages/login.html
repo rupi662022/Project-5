@@ -2,7 +2,7 @@
 <html class="loading" lang="en" data-textdirection="rtl">
 <head>
 
-    <script src="../Scripts/ajaxCallsWithKey.js"></script>
+    <script src="../Scripts/ajaxCalls.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -26,17 +26,17 @@
 
     <script>
 
-        $(document).ready(function () {
-            $("#myForm").submit(ReadUser)
-            if (localStorage.getItem('User')) {
-                window.location.href = "insert.html";
-            }
+        //$(document).ready(function () {
+        //    //$("#myForm").submit(ReadUser)
+        //    if (localStorage.getItem('User')) {
+        //        window.location.href = "insert.html";
+        //    }
 
-        })
+        //})
 
         function ReadUser() {
-            let email = $("#email").val();
-            password = $("#password").val();
+            let email = $("#user-name").val();
+            password = $("#user-password").val();
             let url = "../api/User?email=" + email;
             ajaxCall("GET", url, "", scb, ecb);
             return false;
@@ -46,11 +46,13 @@
         function scb(U) {
             console.log(U);
             if (U.userPassword == password) {
-                window.location.href = "ManageGate.html";
+                window.location.href = "ManageGates.html";
                 saveToLocalS(U);
             }
             else {
                 alert("incorrect login details")
+                window.location.href = "register.html";
+
             }
         }
 
@@ -88,7 +90,7 @@
                     <div class="card-body">
                         <form class="form-horizontal form-simple" action="index.html" novalidate>
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                <input type="text" class="form-control form-control-lg input-lg" id="user-name" placeholder="תעודת זהות" required>
+                                <input type="text" class="form-control form-control-lg input-lg" id="user-name" placeholder="אימייל" required>
                                 <div class="form-control-position">
                                     <i class="ft-user"></i>
                                 </div>
@@ -108,7 +110,7 @@
                                 </div>-->
                                 <!--<div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">שכחת סיסמה?</a></div>-->
                             </div>
-                            <button onclick="ManageGates.html" type="submit" id="myForm" class="btn btn-info btn-lg btn-block"></><i class="ft-unlock"></i> התחבר</button>
+                            <button onclick="ReadUser()" type="submit" class="btn btn-info btn-lg btn-block"></><i class="ft-unlock"></i> התחבר</button>
                         </form>
                     </div>
                 </div>
