@@ -25,45 +25,22 @@
 
 
         $(document).ready(function () {
-            $("#SendToMaintinance").click(f1);
-            $("#ReturnedFromMaintinance").click(f2);
+        $('.chkbox').click(function () {
+            checkBox = this.id
+            checkBoxValue = $(this).attr('value')
+            if (checkBoxValue == '-') {
+                $(this).attr('value','+')
+            //    $('#checkBoxValue').val('+')
+            }
+            else {
+                $(this).attr('value', '-')
+            //    $('#checkBoxValue').val('-')
+            }
 
         });
 
+        });
 
-        
-
-        //function f1() {
-        //    CH1 = document.querySelectorAll('input[type="text"]').values;
-        //    for(i<0)
-
-        //    if (CH1 == '-') {
-        //        $('#SendToMaintinance').val('+')
-        //    }
-        //    else {
-        //        $('#SendToMaintinance').val('-')
-        //    }
-        //}
-
-        function f1() {
-            CH1 = document.getElementById("SendToMaintinance").value;
-
-            if (CH1 == '-') {
-                $('#SendToMaintinance').val('+')
-            }
-            else {
-                $('#SendToMaintinance').val('-')
-            }
-        }
-        function f2() {
-            CH2 = document.getElementById("ReturnedFromMaintinance").value;
-                if (CH2 == '-') {
-                    $('#ReturnedFromMaintinance').val('+')
-                }
-                else {
-                    $('#ReturnedFromMaintinance').val('-')
-                }
-            }
 
         function submitGatePass() {
 
@@ -369,7 +346,7 @@
                                                         
                                                             <label class="col-md-3 label-control "  for="SendToMaintinance">יצא לתיקון</label>
                                                             <div class="col-md-9">
-                                                                <input type="checkbox" VALUE="-"  name="SendToMaintinance" id="SendToMaintinance">
+                                                                <input type="checkbox" VALUE="-" class="chkbox"  name="SendToMaintinance" id="SendToMaintinance">
                                                             </div>
                                                         
                                                         </div>
@@ -378,7 +355,7 @@
 
                                                         <label class="col-md-3 label-control "   for="ReturnedFromMaintinance">חזר מתיקון</label>
                                                         <div class="col-md-9">
-                                                            <input type="checkbox"  VALUE="-"  name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
+                                                            <input type="checkbox"  VALUE="-"  class="chkbox" name="ReturnedFromMaintinance" id="ReturnedFromMaintinance">
                                                         </div>
                                                     </div>
 

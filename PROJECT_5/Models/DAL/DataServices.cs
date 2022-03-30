@@ -28,7 +28,6 @@ namespace PROJECT_5.Models.DAL
             return con;
         }
 
-<<<<<<< HEAD
         //        public void InsertUser(User user)
         //        {
         //            SqlConnection con = null;
@@ -68,7 +67,6 @@ namespace PROJECT_5.Models.DAL
         //            return command;
         ////>>>>>>> b126fda96eb08b2a8a45c92140bab2099abc6cfa
         //        }
-=======
         public void InsertUser(User user)
         {
             SqlConnection con = null;
@@ -105,7 +103,7 @@ namespace PROJECT_5.Models.DAL
             command.CommandTimeout = 30;
             return command;
         }
->>>>>>> 37608bb11f5e59fa402de06a9162aa402409c3b0
+
 
         public int InsertGatePass(GatePass g)
         {

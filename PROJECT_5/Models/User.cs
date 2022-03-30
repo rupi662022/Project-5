@@ -32,7 +32,7 @@ namespace PROJECT_5.Models
         public string UserType { get => userType; set => userType = value; }
 
 
-<<<<<<< HEAD
+
         //public void InsertUser()
         //{
         //    DataServices ds = new DataServices();
@@ -40,7 +40,7 @@ namespace PROJECT_5.Models
         //}
         //public User Read(string email)
         //{
-=======
+
         public void InsertUser()
         {
             DataServices ds = new DataServices();
@@ -48,7 +48,7 @@ namespace PROJECT_5.Models
         }
         public User ReadUser(string email)
         {
->>>>>>> 37608bb11f5e59fa402de06a9162aa402409c3b0
+
 
             DataServices ds = new DataServices();
             return ds.ReadUser(email);
