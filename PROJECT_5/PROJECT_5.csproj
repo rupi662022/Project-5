@@ -167,6 +167,7 @@
     <Compile Include="Models\DAL\DataServices.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\GatePass.cs" />
+    <Compile Include="Models\GmailAPI.cs" />
     <Compile Include="Models\OCR.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -6148,6 +6149,7 @@
     <Content Include="app-assets\vendors\js\editors\tinymce\skins\lightgray\Variables.less" />
     <Content Include="app-assets\vendors\js\editors\tinymce\skins\lightgray\Window.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Gmail API Init.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

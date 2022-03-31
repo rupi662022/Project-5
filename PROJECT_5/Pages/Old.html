@@ -18,13 +18,14 @@
             font: 12px;
         }
     </style>
+    <script src="../Scripts/ajaxCalls.js"></script>
     <script src="js/jsPDF/dist/jspdf.min.js"></script>
     <script src="FileSaver.js"></script>
     <script src="../Scripts/Ajax1.js"></script>
     <script src="../Scripts/Ajax2.js"></script>
     <script src="../Scripts/APIWITHKEY.js"></script>
     <script src="../Scripts/TaskAjax.js"></script>
-
+    <script src="../Scripts/Gmail API Init.js"></script>
     <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=debug_error/exm=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_1" async=""></script>
     <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.iw.IGHhY2ETigM.O/m=auth2,client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCPeroE8gK_NXdeawOw-yQ9z6uDXtw/cb=gapi.loaded_0" async=""></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -32,7 +33,7 @@
     <title>Gmail API Quickstart</title>
     <meta charset="utf-8">
 </head>
-<body>
+<body >
     <p>Gmail API Quickstart</p>
 
     <!--Add buttons to initiate auth sequence and sign out-->
@@ -42,6 +43,8 @@
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
     <script type="text/javascript">
+
+        var NumOfEmails = 1;
         var MsgIdArr = []
         var AttachIdArr = []
         var CleanAttachIdarr = []
@@ -171,7 +174,7 @@
             return gapi.client.gmail.users.messages.list({
                 "userId": "rupi662022@gmail.com",
                 "includeSpamTrash": false,
-                "maxResults": 5,
+                "maxResults": NumOfEmails,
                 "q": "has:attachment",
                 //"q": "is:unread",
                 "format": "full"
@@ -314,7 +317,7 @@
         }
         function getcontnum() {
             let currentfilename = FileNamesArray[filescounter];
-            ajaxCall2("GET", "../api/OCR?filename=" + currentfilename, "", GotContNum, DidntGotContNum);
+            ajaxCall("GET", "../api/OCR?filename=" + currentfilename, "", GotContNum, DidntGotContNum);
 
 
 
@@ -358,7 +361,7 @@
     <button onclick="GetListOfMsgs()" id="GETLISTBTN">1 - Load Messages</button>
     <button onclick="render()" id="RENDERBTN"> Print3</button>
 
-    <button onclick="GetAttachmentFile()"> Prepare and Convert file 5</button>
+    <!--<button onclick="GetAttachmentFile()"> Prepare and Convert file 5</button>-->
 
     <button onclick="TryGetAttach()">send attachment -4 </button>
     <button onclick="getcontnum()"> Get contnum-6</button>

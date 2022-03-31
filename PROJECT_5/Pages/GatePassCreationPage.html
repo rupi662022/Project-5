@@ -29,110 +29,110 @@
 
     <script>
 
-        //var strToken = "";
-        //var username = "";
-        //var password = "";
-        //var ContainerNumber = "";
-        //function init() {
-        //    username = "shayport"//need to fill in manually
-        //    password = "shay@@2022"//need to fill in manually
-        //    LogIn(username, password, successLoginCB, errorLoginCB);
-        //    ContainerNumber = sessionStorage.getItem("ContainerNumber")
-        //    CreateGatePass();
-        //}
+        var strToken = "";
+        var username = "";
+        var password = "";
+        var ContainerNumber = "";
+        function init() {
+            username = "shayport"//need to fill in manually
+            password = "shay@@2022"//need to fill in manually
+            LogIn(username, password, successLoginCB, errorLoginCB);
+            ContainerNumber = sessionStorage.getItem("ContainerNumber")
+            CreateGatePass();
+        }
 
-        //function successLoginCB(data) {
-        //    alert("successLoginCB")
-        //    strToken = JSON.stringify(data["Token"])
+        function successLoginCB(data) {
+            alert("successLoginCB")
+            strToken = JSON.stringify(data["Token"])
 
-        //    document.getElementById("responsePH").innerHTML = strToken
+            document.getElementById("responsePH").innerHTML = strToken
 
-        //}
+        }
 
-        //function errorLoginCB() {
-        //    alert("errorLoginCB")
-        //}
-
-
+        function errorLoginCB() {
+            alert("errorLoginCB")
+        }
 
 
-        //function CreateGatePass() {
-        //    let tmpToken = strToken;
-        //    let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNumber=" + ContainerNumber
-        //    GetAjaxCall(apicall, tmpToken, successResponseCB, errorResponseCB)
-
-        //}
-        //function successResponseCB(response) {
-        //    alert("successResponseCB")
-        //    console.log(response)
-        //    document.getElementById("Comments").value="צילום"
-        //    let str = JSON.stringify(response)
-
-        //    If DepartedContainers isnt null
-        //    if (response.ContainerStatusResponse.DepartedContainersList.length != 0)
-        //    {
-
-        //        document.getElementById("CustomAgentName").value = response.ContainerStatusResponse.DepartedContainersList[0].CustomsAgentName
-        //        document.getElementById("ContType").value = response.ContainerStatusResponse.DepartedContainersList[0].ContainerType
-        //        document.getElementById("ShippingCompNamePlusLine").value = response.ContainerStatusResponse.DepartedContainersList[0].ShippingAgentName + "  " + response.ContainerStatusResponse.DepartedContainersList[0].StorageCode
-
-        //        if (response.ContainerStatusResponse.DepartedContainersList[0].AppointmentExists != false) {
-
-        //            document.getElementById("TransportCompName").value = response.ContainerStatusResponse.DepartedContainersList[0].AppointmentTruckingCompanyName
-        //        }
-
-        //        if (response.ContainerStatusResponse.DepartedContainersList[0].ExportDocumentNumber != null) {
-
-        //            document.getElementById("StorageCertificate").value = "יש תעודה"
-        //        }
-        //        else {
-        //            document.getElementById("StorageCertificate").value = "אין תעודה"
-
-        //        }
-
-        //    }
-        //    If InportContainers isnt
-        //    if (response.ContainerStatusResponse.InPortContainersList.length != 0)
-        //    {
-        //        document.getElementById("CustomAgentName").value = response.ContainerStatusResponse.InPortContainersList[0].CustomsAgentName
-        //        document.getElementById("ContType").value = response.ContainerStatusResponse.InPortContainersList[0].ContainerType
-        //        document.getElementById("ShippingCompNamePlusLine").value = response.ContainerStatusResponse.InPortContainersList[0].ShippingAgentName + "  " + response.ContainerStatusResponse.InPortContainersList[0].StorageCode
-
-        //        if (response.ContainerStatusResponse.InPortContainersList[0].AppointmentExists != false) {//If there is a transportation company
-
-        //            document.getElementById("TransportCompName").value = ContainerStatusResponse.InPortContainersListlength[0].AppointmentTruckingCompanyName
 
 
-        //        }
+        function CreateGatePass() {
+            let tmpToken = strToken;
+            let apicall = "api/ContainerStatus/GetContainerStatusHaifa?ContainerNumber=" + ContainerNumber
+            GetAjaxCall(apicall, tmpToken, successResponseCB, errorResponseCB)
+
+        }
+        function successResponseCB(response) {
+            alert("successResponseCB")
+            console.log(response)
+            document.getElementById("Comments").value="צילום"
+            let str = JSON.stringify(response)
+
+            //If DepartedContainers isnt null
+            if (response.ContainerStatusResponse.DepartedContainersList.length != 0)
+            {
+
+                document.getElementById("CustomAgentName").value = response.ContainerStatusResponse.DepartedContainersList[0].CustomsAgentName
+                document.getElementById("ContType").value = response.ContainerStatusResponse.DepartedContainersList[0].ContainerType
+                document.getElementById("ShippingCompNamePlusLine").value = response.ContainerStatusResponse.DepartedContainersList[0].ShippingAgentName + "  " + response.ContainerStatusResponse.DepartedContainersList[0].StorageCode
+
+                if (response.ContainerStatusResponse.DepartedContainersList[0].AppointmentExists != false) {
+
+                    document.getElementById("TransportCompName").value = response.ContainerStatusResponse.DepartedContainersList[0].AppointmentTruckingCompanyName
+                }
+
+                if (response.ContainerStatusResponse.DepartedContainersList[0].ExportDocumentNumber != null) {
+
+                    document.getElementById("StorageCertificate").value = "יש תעודה"
+                }
+                else {
+                    document.getElementById("StorageCertificate").value = "אין תעודה"
+
+                }
+
+            }
+            //If InportContainers isnt
+            if (response.ContainerStatusResponse.InPortContainersList.length != 0)
+            {
+                document.getElementById("CustomAgentName").value = response.ContainerStatusResponse.InPortContainersList[0].CustomsAgentName
+                document.getElementById("ContType").value = response.ContainerStatusResponse.InPortContainersList[0].ContainerType
+                document.getElementById("ShippingCompNamePlusLine").value = response.ContainerStatusResponse.InPortContainersList[0].ShippingAgentName + "  " + response.ContainerStatusResponse.InPortContainersList[0].StorageCode
+
+                if (response.ContainerStatusResponse.InPortContainersList[0].AppointmentExists != false) {//If there is a transportation company
+
+                    document.getElementById("TransportCompName").value = ContainerStatusResponse.InPortContainersListlength[0].AppointmentTruckingCompanyName
 
 
-        //    }
+                }
+
+
+            }
 
         //    If InboundContainers isnt
-        //    if (response.ContainerStatusResponse.InboundContainersList.length != 0)
-        //    {
-        //        if (response.ContainerStatusResponse.InboundContainersList[0].ExportDocumentNumber != null) {
+            if (response.ContainerStatusResponse.InboundContainersList.length != 0)
+            {
+                if (response.ContainerStatusResponse.InboundContainersList[0].ExportDocumentNumber != null) {
 
-        //            document.getElementById("StorageCertificate").value = "יש תעודה"
-        //        }
-        //        else {
-        //            document.getElementById("StorageCertificate").value = "אין תעודה"
+                    document.getElementById("StorageCertificate").value = "יש תעודה"
+                }
+                else {
+                    document.getElementById("StorageCertificate").value = "אין תעודה"
 
 
-        //        }
+                }
 
-        //    }
+            }
 
         //    //CheckForNulls();
 
-        //}
+        }
 
-        //function errorResponseCB() {
+        function errorResponseCB() {
 
-        //    alert("errorResponseCB")
+            alert("errorResponseCB")
 
 
-        //}
+        }
 
 
         //$('#SendToMaintinance').change(function () {
