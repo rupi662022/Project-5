@@ -11,6 +11,7 @@
     <script src="../Scripts/ajaxCallsWithKey.js"></script>
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/jquery-3.4.1.js"></script>
+    <script src="../Scripts/TaskAjax.js"></script>
     <!--Tghu5061990-->
     <style type="text/css">
 
@@ -38,7 +39,9 @@
             password = "shay@@2022"//need to fill in manually
             LogIn(username, password, successLoginCB, errorLoginCB);
             ContainerNumber = sessionStorage.getItem("ContainerNumber")
-            CreateGatePass();
+            if (ContainerNumber != null) {
+                CreateGatePass();
+}
         }
 
         function successLoginCB(data) {
@@ -214,7 +217,7 @@
 
     </script>
 </head>
-<body>
+<body onload="init()">
     <div>
         <input type="text" id="ContainerNum" /> :הכנס מספר מכולה
         <table>
