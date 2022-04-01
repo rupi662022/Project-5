@@ -293,7 +293,7 @@ namespace PROJECT_5.Models.DAL
 
         //כניסה לאתר
 
-        public User ReadUser(string userEmail, string userPassword)
+        public User ReadUser(string userEmail)
         {
 
             SqlConnection con = null;
@@ -301,7 +301,7 @@ namespace PROJECT_5.Models.DAL
             try
             {
                 con = Connect("FinalProject");
-                SqlCommand selectCommand = createSelectCommandUser(con, userEmail,  userPassword);
+                SqlCommand selectCommand = createSelectCommandUser(con, userEmail);
 
                 SqlDataReader dr = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -337,15 +337,15 @@ namespace PROJECT_5.Models.DAL
             }
 
         }
-        private SqlCommand createSelectCommandUser(SqlConnection con, string userEmail, string userPassword)
+        private SqlCommand createSelectCommandUser(SqlConnection con, string userEmail)
         {
-            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email =@email and AND USR_Password = @password";
+            string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
             SqlCommand cmd = createCommand(con, commandStr);
             //cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.Add("@email", SqlDbType.NVarChar);
             cmd.Parameters["@email"].Value = userEmail;
-            cmd.Parameters.Add("@password", SqlDbType.VarChar);
-            cmd.Parameters["@password"].Value = userPassword;
+            //cmd.Parameters.Add("@password", SqlDbType.VarChar);
+            //cmd.Parameters["@password"].Value = userPassword;
             return cmd;
         }
 

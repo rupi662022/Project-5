@@ -18,10 +18,10 @@ namespace PROJECT_5.Controllers
         }
 
         // GET: api/User/5
-        public User Get(string userEmail, string userPassword)
+        public User Get(string userEmail)
         {
             User U = new User();
-            return U.ReadUser(userEmail, userPassword);
+            return U.ReadUser(userEmail);
         }
 
         //POST: api/User

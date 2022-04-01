@@ -48,10 +48,10 @@ namespace PROJECT_5.Models
       
    
         //קריאה
-        public User ReadUser(string userEmail, string userPassword)
+        public User ReadUser(string userEmail)
         {
             DataServices ds = new DataServices();
-            return ds.ReadUser(userEmail, userPassword);
+            return ds.ReadUser(userEmail);
         }
 
             //}
