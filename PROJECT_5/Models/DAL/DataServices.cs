@@ -20,6 +20,51 @@ namespace PROJECT_5.Models.DAL
         //}
 
 
+
+        //בדיקה טבלה
+
+        public List<GatePass> ReadgatePass(string id)
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = createSelectCommandTableId(con, id);
+                List<GatePass> gatePassList = new List<GatePass>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    GatePass a = new GatePass();
+                    a.Id= (string)dataReader["GPS_Id"];
+                    a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+
+                    gatePassList.Add(a);
+                }
+                return gatePassList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of artical", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         SqlConnection Connect(string connectionStringName)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
