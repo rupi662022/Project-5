@@ -27,33 +27,47 @@
     <script>
 
         //$(document).ready(function () {
-        //    //$("#myForm").submit(ReadUser)
+        //    $("#myForm").submit(ReadUser)
         //    if (localStorage.getItem('User')) {
         //        window.location.href = "insert.html";
         //    }
 
         //})
 
+        //function ReadUser() {
+        //    let email = $("#user-name").val();
+        //    password = $("#user-password").val();
+        //    let url= "../api/User?email=" + email + "&password=" + password;
+        //    ajaxCall("GET", url, "", scb, ecb);
+        //    return false;
+        //}
+
+
         function ReadUser() {
             let email = $("#user-name").val();
-            password = $("#user-password").val();
-            let url = "../api/User?email=" + email;
+            let password = $("#user-password").val();
+            let url = "../api/User?userEmail=" + email + "&userPassword=" + password;
             ajaxCall("GET", url, "", scb, ecb);
             return false;
         }
 
-
         function scb(U) {
             console.log(U);
-            if (U.userPassword == password) {
-                window.location.href = "ManageGates.html";
-                saveToLocalS(U);
-            }
-            else {
-                alert("incorrect login details")
-                window.location.href = "register.html";
+      
 
-            }
+
+            window.localStorage.setItem("email", JSON.stringify(U.UserEmail));
+            window.localStorage.setItem("name", JSON.stringify(U.UserEmail));
+
+            window.location.href = "ManageGates.html";
+                  //if (U.userPassword == password) {
+            //    saveToLocalS(U);
+            //}
+            //else {
+            //    alert("incorrect login details")
+            //    window.location.href = "register.html";
+
+            //}
         }
 
         function ecb(err) {
@@ -129,7 +143,7 @@
       </div>
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
-
+    <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="../../../app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
