@@ -24,6 +24,15 @@ namespace PROJECT_5.Controllers
             return U.ReadUser(userEmail);
         }
 
+
+        //public IEnumerable<User> Get()
+        //{
+        //    User U = new User();
+        //    return U.ReadUser();
+        //}
+
+
+
         //POST: api/User
         public HttpResponseMessage Post([FromBody] User user)
         {
