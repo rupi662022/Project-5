@@ -29,7 +29,6 @@
         $(document).ready(function () {
             let select = "אא";
             ajaxCall("GET", "../api/GatePass?transportCompany=" + select, "", getSCB, getECB);
-            alert("finish get company name to table")
 
         })
 
@@ -44,6 +43,8 @@
         }
 
         function getSCB(GatePasList) {
+            alert("finish get company name to table");
+
             GateList = GatePasList;
             $("#GatePas").jsGrid({
                 data: GateList,
@@ -76,6 +77,8 @@
 </head>
 <body>
     <h1>Basic Scenario</h1>
+    <div id="GatePas"></div>
+
     <!--<div id="jsGrid"></div>-->
     <table class="display nowrap" id="GatePas" style=" width:100%">
         <thead>
