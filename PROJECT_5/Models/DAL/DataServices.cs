@@ -23,39 +23,64 @@ namespace PROJECT_5.Models.DAL
 
         ////בדיקה טבלה
 
-        //public List<GatePass> ReadgatePass(string id)
+        public List<GatePass> ReadgatePass(string TransportCompany)
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = CreateSelectCommandTableCompany(con, TransportCompany);
+                List<GatePass> gatePassList = new List<GatePass>();
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dataReader.Read())
+                {
+                    GatePass a = new GatePass();
+                    a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+                    a.ContainerType = (string)dataReader["GPS_ContainerType"];
+                    a.TransportCompany = (string)dataReader["GPS_TransportCompany"];
+                    a.Importer = (string)dataReader["GPS_Importer"];
+
+
+                    gatePassList.Add(a);
+                }
+                return gatePassList;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of artical", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        private SqlCommand CreateSelectCommandTableCompany(SqlConnection con, string transportCompany)
+        {
+            string commandStr = "SELECT * FROM SHAY_GatePass WHERE GPS_TransportCompany =@transportCompany";
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@transportCompany", SqlDbType.NVarChar);
+            cmd.Parameters["@transportCompany"].Value = transportCompany;
+            return cmd;
+        }
+        //public List<User> ReadUsers()
         //{
-        //    SqlConnection con = null;
-
-        //    try
-        //    {
-        //        con = Connect("FinalProject");
-        //        SqlCommand selectCommand = CreateSelectCommandTableId(con, id);
-        //        List<GatePass> gatePassList = new List<GatePass>();
-        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-        //        while (dataReader.Read())
-        //        {
-        //            GatePass a = new GatePass();
-        //            a.Id= (string)dataReader["GPS_Id"];
-        //            a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
-
-        //            gatePassList.Add(a);
-        //        }
-        //        return gatePassList;
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw new Exception("failed in reading of artical", ex);
-        //    }
-        //    finally
-        //    {
-        //        if (con != null)
-        //            con.Close();
-        //    }
+        //    return UsersList;
         //}
 
+        private SqlCommand createSelectCommandNewsByName(SqlConnection con, string name, int user)
+        {
+            string commandStr = "SELECT * FROM UsersArticles_2022 u join Articles_2022 a on u.newsId = a.newsId WHERE [name] = @name and userId =@user and u.statusAr='True' ";
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@name", SqlDbType.NVarChar);
+            cmd.Parameters["@name"].Value = name;
+            cmd.Parameters.Add("@user", SqlDbType.Int);
+            cmd.Parameters["@user"].Value = user;
+            return cmd;
+        }
 
 
 

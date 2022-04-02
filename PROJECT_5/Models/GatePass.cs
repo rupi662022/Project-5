@@ -74,11 +74,11 @@ namespace PROJECT_5.Models
         }
 
         //בדיקה לטבלה
-        //public List<GatePass> ReadgatePass(string id)
-        //{
-        //    DataServices ds = new DataServices();
-        //    return ds.ReadgatePass(id);
-        //}
+        public List<GatePass> ReadgatePass(string transportCompany)
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadgatePass(transportCompany);
+        }
 
 
     }

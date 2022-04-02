@@ -173,6 +173,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\CompanyTable.html" />
     <Content Include="Scripts\ajaxCallsStub.js" />
     <Content Include="app-assets\css-rtl\app.css" />
     <Content Include="app-assets\css-rtl\app.min.css" />

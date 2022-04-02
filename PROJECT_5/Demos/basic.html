@@ -4,8 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>jsGrid - Basic Scenario</title>
     <link rel="stylesheet" type="text/css" href="demos.css" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
-
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
+    <script src="../Scripts/ajaxCalls.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
 
@@ -26,12 +26,21 @@
 
     <script>
 
-        function chooseSeries() {
-            let select = 4;
-            ajaxCall("GET", "../api/GatePass?id=" + select , "", getSCB, getECB);
-        }
+        $(document).ready(function () {
+            let select = "אא";
+            ajaxCall("GET", "../api/GatePass?transportCompany=" + select, "", getSCB, getECB);
+            alert("finish get company name to table")
+
+        })
+
+        //function chooseSeries() {
+        //    let select = "אא";
+        //    ajaxCall("GET", "../api/GatePass?transportCompany=" + select, "", getSCB, getECB);
+        //    alert("finish get company name to table")
+
+        //}
         function getECB() {
-            alert("NO")
+            alert("cant get company table")
         }
 
         $(function getSCB(GatePasList) {
@@ -51,11 +60,11 @@
                 deleteConfirm: "Do you really want to delete the client?",
                 controller: db,
                 fields: [
-                    { name: "Name", type: "text", width: 150 },
-                    { name: "Age", type: "number", width: 50 },
-                    { name: "Address", type: "text", width: 200 },
-                    { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
-                    { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+                    { name: "containerNum", type: "text", width: 100 },
+                    { name: "containerType", type: "text", width: 100 },
+                    { name: "transportCompany", type: "text", width: 100 },
+                    { name: "importer", type: "select", type: "text", width: 100 },
+                    //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
                     { type: "control" }
                 ]
             });
@@ -71,11 +80,11 @@
     <table class="display nowrap" id="GatePas" style=" width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Address</th>
-                <th>Country</th>
-                <th>Married</th>
+                <th>containerNum</th>
+                <th>containerType</th>
+                <th>transportCompany</th>
+                <th>importer</th>
+                <!--<th>Married</th>-->
                 <th></th>
             </tr>
         </thead>
