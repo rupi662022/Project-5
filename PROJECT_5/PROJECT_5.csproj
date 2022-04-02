@@ -173,6 +173,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\ajaxCallsStub.js" />
     <Content Include="app-assets\css-rtl\app.css" />
     <Content Include="app-assets\css-rtl\app.min.css" />
     <Content Include="app-assets\css-rtl\bootstrap-extended.css" />
