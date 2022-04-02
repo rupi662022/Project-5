@@ -24,66 +24,10 @@
 
 
         $(document).ready(function () {
-        $('.chkbox').click(function () {
-            checkBox = this.id
-            checkBoxValue = $(this).attr('value')
-            if (checkBoxValue == '-') {
-                $(this).attr('value','+')
-            //    $('#checkBoxValue').val('+')
-            }
-            else {
-                $(this).attr('value', '-')
-            //    $('#checkBoxValue').val('-')
-            }
+
+
 
         });
-
-        });
-
-
-        function submitGatePass() {
-
-
-            //let email = localStorage["email"];
-
-            var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-            let gatePass = {
-                ContainerNum: document.getElementById("ContainerNum").value,
-                ContainerType: document.getElementById("ContType").value,
-                TransportCompany: document.getElementById("TransportCompName").value,
-                Importer: document.getElementById("ImporterName").value,
-                CustomsBroker: document.getElementById("CustomAgentName").value,
-                ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
-                StorageCertificate: document.getElementById("StorageCertificate").value,
-                CaseNumber: document.getElementById("AccountIDNum").value,
-                Note: document.getElementById("Comments").value,
-                OfficeNote: document.getElementById("OfficeComents").value,
-                GoToRepair: document.getElementById("SendToMaintinance").value,
-                ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
-                UserEmail: document.getElementById("WorkerEmail").value,
-                IsActive: '1',
-                CreatedDate: sqlDatetime
-
-            }
-
-
-            ajaxCall("POST", "../api/GatePass", JSON.stringify(gatePass), postSuccessCB, postErrorCB);
-
-            return false;
-
-
-        }
-
-
-
-
-        function postSuccessCB() {
-            console.log("success");
-        }
-
-        function postErrorCB(err) {
-            alert(err);
-        }
 
 
 
@@ -143,10 +87,10 @@
                     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                         <li class=" nav-item"><a href="index.html"><i class="fa fa-home"></i><span class="menu-title" data-i18n="nav.dash.main">עמוד הבית</span></a></li>
                         <li class=" nav-item" ><a href="#"><i class="fa fa-file-text-o"></i><span class="menu-title" data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
-                        <li class=" nav-item" style="border: thin solid black;"><a href="#"><i class="fa fa-server"></i><span class="menu-title" data-i18n="nav.page_layouts.main"><b>ניהול גייטפסים</b></span></a></li>
+                        <li class=" nav-item"><a href="#"><i class="fa fa-server"></i><span class="menu-title" data-i18n="nav.page_layouts.main">ניהול גייטפסים</span></a></li>
                         <li class=" nav-item"><a href="#"><i class="fa fa-car"></i><span class="menu-title" data-i18n="nav.navbars.main">נהגים</span><!--<span class="badge badge badge-success float-right mr-2">New</span>--></a></li>
                         <li class=" nav-item"><a href="#"><i class="fa fa-users"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">עמילי מכס</span></a></li>
-                        <li class=" nav-item"><a href="#"><i class="icon-equalizer"></i><span class="menu-title" data-i18n="nav.horz_nav.main">Horizontal Nav</span></a></li>
+                        <li class=" nav-item" style="border: thin solid black;"><a href="#"><i class="icon-equalizer"></i><span class="menu-title" data-i18n="nav.horz_nav.main"><b>לקוחות</b></span></a></li>
                         <li class=" nav-item"><a href="#"><i class="icon-direction"></i><span class="menu-title" data-i18n="nav.page_headers.main">Page Headers</span></a>
                             <ul class="menu-content">
                                 <li><a class="menu-item" href="headers-breadcrumbs-basic.html" data-i18n="nav.page_headers.headers_breadcrumbs_basic">Breadcrumbs basic</a></li>
