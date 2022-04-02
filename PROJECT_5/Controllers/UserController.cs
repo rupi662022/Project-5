@@ -12,14 +12,14 @@ namespace PROJECT_5.Controllers
     public class UserController : ApiController
     {
         // GET: api/User
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/User/5
-        [HttpPut]
-        [Route("api/User?userEmail =")]
+        //[HttpPut]
+        //[Route("api/User?userEmail =")]
 
         public User Get(string userEmail)
         {

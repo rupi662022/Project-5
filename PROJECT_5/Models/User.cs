@@ -31,13 +31,13 @@ namespace PROJECT_5.Models
         public string UserPassword { get => userPassword; set => userPassword = value; }
         public string UserType { get => userType; set => userType = value; }
 
-        public User(string userEmail, string userPassword)
-        {
+        //public User(string userEmail, string userPassword)
+        //{
 
-            UserEmail = userEmail;
-            UserPassword = userPassword;
+        //    UserEmail = userEmail;
+        //    UserPassword = userPassword;
 
-        }
+        //}
 
         public void InsertUser()
         {
