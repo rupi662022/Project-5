@@ -20,10 +20,10 @@ namespace PROJECT_5.Controllers
 
 
         //בדיקה לטבלה
-        public List<GatePass> Get(string id)
-        {
-            GatePass gatePass = new GatePass();
-            return gatePass.ReadgatePass(id);
-        }
+        //public List<GatePass> Get(string id)
+        //{
+        //    GatePass gatePass = new GatePass();
+        //    return gatePass.ReadgatePass(id);
+        //}
     }
 }

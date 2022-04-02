@@ -31,22 +31,22 @@ namespace PROJECT_5.Models
         public string UserPassword { get => userPassword; set => userPassword = value; }
         public string UserType { get => userType; set => userType = value; }
 
-        //public User( string userEmail, string userPassword)
-        //{
+        public User(string userEmail, string userPassword)
+        {
 
-        //    UserEmail = userEmail;
-        //    UserPassword = userPassword;
+            UserEmail = userEmail;
+            UserPassword = userPassword;
 
-        //}
+        }
 
         public void InsertUser()
         {
             DataServices ds = new DataServices();
             ds.InsertUser(this);
         }
- 
-      
-   
+
+
+
         //קריאה
         public User ReadUser(string userEmail)
         {
@@ -54,17 +54,17 @@ namespace PROJECT_5.Models
             return ds.ReadUser(userEmail);
         }
 
-            //}
-            //public int LogIn()---READ test for Procedures
-            //{
-            //    int res = 0;
-            //    DataServices ds = new DataServices();
-            //    res = ds.logInUsr(this);
-            //    return res;
-            //}
+        ////}
+        //public User ReadUser()/*---READ test for Procedures*/
+        //{
+        //    //int res = 0;
+        //DataServices ds = new DataServices();
+        //  ds.ReadUser(this);
+
+        //}
 
 
 
 
-        }
+    }
 }

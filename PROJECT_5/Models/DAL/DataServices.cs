@@ -21,40 +21,40 @@ namespace PROJECT_5.Models.DAL
 
 
 
-        //בדיקה טבלה
+        ////בדיקה טבלה
 
-        public List<GatePass> ReadgatePass(string id)
-        {
-            SqlConnection con = null;
+        //public List<GatePass> ReadgatePass(string id)
+        //{
+        //    SqlConnection con = null;
 
-            try
-            {
-                con = Connect("FinalProject");
-                SqlCommand selectCommand = createSelectCommandTableId(con, id);
-                List<GatePass> gatePassList = new List<GatePass>();
-                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        SqlCommand selectCommand = CreateSelectCommandTableId(con, id);
+        //        List<GatePass> gatePassList = new List<GatePass>();
+        //        SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-                while (dataReader.Read())
-                {
-                    GatePass a = new GatePass();
-                    a.Id= (string)dataReader["GPS_Id"];
-                    a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
+        //        while (dataReader.Read())
+        //        {
+        //            GatePass a = new GatePass();
+        //            a.Id= (string)dataReader["GPS_Id"];
+        //            a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
 
-                    gatePassList.Add(a);
-                }
-                return gatePassList;
-            }
-            catch (Exception ex)
-            {
+        //            gatePassList.Add(a);
+        //        }
+        //        return gatePassList;
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw new Exception("failed in reading of artical", ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
+        //        throw new Exception("failed in reading of artical", ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //            con.Close();
+        //    }
+        //}
 
 
 
@@ -346,7 +346,7 @@ namespace PROJECT_5.Models.DAL
             try
             {
                 con = Connect("FinalProject");
-                SqlCommand selectCommand = createSelectCommandUser(con, userEmail);
+                SqlCommand selectCommand = CreateSelectCommandUser(con, userEmail);
 
                 SqlDataReader dr = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -382,7 +382,7 @@ namespace PROJECT_5.Models.DAL
             }
 
         }
-        private SqlCommand createSelectCommandUser(SqlConnection con, string userEmail)
+        private SqlCommand CreateSelectCommandUser(SqlConnection con, string userEmail)
         {
             string commandStr = "SELECT * FROM SHAY_User WHERE USR_Email=@email ";
             SqlCommand cmd = createCommand(con, commandStr);
