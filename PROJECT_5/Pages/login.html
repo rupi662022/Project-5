@@ -2,7 +2,7 @@
 <html class="loading" lang="en" data-textdirection="rtl">
 <head>
 
-    <script src="../Scripts/ajaxCalls.js"></script>
+  
     <script src="../Scripts/jquery-3.4.1.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,12 +23,12 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/pages/login-register.css">
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
-
+    <script src="../Scripts/ajaxCalls.js"></script>
 
     <script>
 
         $(document).ready(function () {
-        /*    $("#myForm").submit(ReadUser)*/
+            /*    $("#myForm").submit(ReadUser)*/
             if (localStorage.getItem('User')) {
                 window.location.href = "ManageGates.html";
             }
@@ -44,35 +44,35 @@
         //}
 
 
-        //function ReadUser() {
-        //    let email = $("#user-name").val();
-        //     password = $("#user-password").val();
-        //    let url = "../api/User?userEmail=" + email;
-        //    ajaxCall("GET", url, "", scb, ecb);
-        //    return false;
-        //}
-
-
         function ReadUser() {
-          /*  let email = $("#user-name").val();*/
-            password = $("#user-password").val();
-            let url = "../api/User"
+            let email = $("#user-name").val();
+             password = $("#user-password").val();
+            let url = "../api/User?userEmail=" + email;
             ajaxCall("GET", url, "", scb, ecb);
             return false;
         }
 
 
-            //window.localStorage.setItem("email", JSON.stringify(U.UserEmail));
-            //window.localStorage.setItem("name", JSON.stringify(U.UserEmail));
+        //function ReadUser() {---try for procedure
+        //    /*  let email = $("#user-name").val();*/
+        //    password = $("#user-password").val();
+        //    let url = "../api/User"
+        //    ajaxCall("GET", url, "", scb, ecb);
+        //    return false;
+        //}
 
-            
+
+        //window.localStorage.setItem("email", JSON.stringify(U.UserEmail));
+        //window.localStorage.setItem("name", JSON.stringify(U.UserEmail));
+
+
         function scb(U) {
             console.log(U);
             if (U.UserPassword == password) {
                 window.location.href = "ManageGates.html";
                 saveToLocalS(U);
             }
-    
+
             else {
                 alert("incorrect login details")
                 window.location.href = "register.html";
@@ -153,7 +153,7 @@
       </div>
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
-    <script src="../Scripts/ajaxCalls.js"></script>
+   
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="../../../app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
