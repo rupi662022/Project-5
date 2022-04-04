@@ -27,8 +27,8 @@
     <script>
 
         $(document).ready(function () {
-            let select = "אא";
-            ajaxCall("GET", "../api/GatePass?transportCompany=" + select, "", getSCB, getECB);
+            let isActive = "1";
+            ajaxCall("GET", "../api/GatePass?isActive=" + isActive, "", getSCB, getECB);
 
         })
 
