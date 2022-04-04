@@ -50,7 +50,7 @@ namespace PROJECT_5.Models.DAL
             catch (Exception ex)
             {
 
-                throw new Exception("failed in reading of artical", ex);
+                throw new Exception("failed in reading of GatePass list", ex);
             }
             finally
             {

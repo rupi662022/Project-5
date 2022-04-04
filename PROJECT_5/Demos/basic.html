@@ -43,8 +43,7 @@
         }
 
         function getSCB(GatePasList) {
-            alert("finish get company name to table");
-
+            //alert("finish get company name to table");
             GateList = GatePasList;
             $("#GatePas").jsGrid({
                 data: GateList,
@@ -61,14 +60,16 @@
                 deleteConfirm: "Do you really want to delete the client?",
                 controller: GateList,
                 fields: [
-                    { name: "GPS_ContainerNum", type: "text", width: 100 },
-                    { name: "containerType", type: "text", width: 100 },
-                    { name: "transportCompany", type: "text", width: 100 },
-                    { name: "importer", type: "select", type: "text", width: 100 },
+                    { name: "ContainerNum", type: "text", width: 100 },
+                    { name: "ContainerType", type: "text", width: 100 },
+                    { name: "TransportCompany", type: "text", width: 100 },
+                    { name: "Importer", type: "select", type: "text", width: 100 },
                     //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
                     { type: "control" }
                 ]
             });
+            alert("finish get 2 name to table");
+
 
         }
     </script>
