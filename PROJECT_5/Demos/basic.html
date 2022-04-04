@@ -59,9 +59,9 @@
                 pageSize: 15,
                 pageButtonCount: 5,
                 deleteConfirm: "Do you really want to delete the client?",
-                controller: db,
+                controller: GatePasList,
                 fields: [
-                    { name: "containerNum", type: "text", width: 100 },
+                    { name: "GPS_ContainerNum", type: "text", width: 100 },
                     { name: "containerType", type: "text", width: 100 },
                     { name: "transportCompany", type: "text", width: 100 },
                     { name: "importer", type: "select", type: "text", width: 100 },
@@ -80,19 +80,19 @@
     <div id="GatePas"></div>
 
     <!--<div id="jsGrid"></div>-->
-    <table class="display nowrap" id="GatePas" style=" width:100%">
+    <!--  <table class="display nowrap" id="GatePas" style=" width:100%">
         <thead>
             <tr>
-                <th>containerNum</th>
+                <th>GPS_ContainerNum</th>
                 <th>containerType</th>
                 <th>transportCompany</th>
                 <th>importer</th>
                 <!--<th>Married</th>-->
-                <th></th>
-            </tr>
-        </thead>
-        <!--<tbody id="table-body"></tbody>-->
-    </table>
+    <!-- <th></th>
+    </tr>
+    </thead>
+    <!--<tbody id="table-body"></tbody>
+    </table>-->
 
 </body>
 </html>
