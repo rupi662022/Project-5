@@ -81,5 +81,18 @@ namespace PROJECT_5.Models
         }
 
 
+        //שליחה לארכיון במידה וביצענו מחיקה
+        public void SendGateToArchive(int id)
+        {
+            DataServices ds = new DataServices();
+            ds.SendGateToArchive(id);
+        }
+
+        //public List<GatePass> ReadgatePassList()
+        //{
+        //    DataServices ds = new DataServices();
+        //    return ds.ReadgatePassList();
+        //}
+
     }
 }

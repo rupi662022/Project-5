@@ -29,9 +29,14 @@
         $(document).ready(function () {
             let transportCompany = "אא";
             ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
+   /*         $(".jsgrid-button jsgrid-delete-button").click(SendToArchive);*/
+
 
         })
 
+
+
+       
         //function chooseSeries() {
         //    let select = "אא";
         //    ajaxCall("GET", "../api/GatePass?transportCompany=" + select, "", getSCB, getECB);
@@ -60,18 +65,52 @@
                 deleteConfirm: "Do you really want to delete the client?",
                 controller: GateList,
                 fields: [
+                    { name: "Id", type: "text", width: 100 },
                     { name: "ContainerNum", type: "text", width: 100 },
                     { name: "ContainerType", type: "text", width: 100 },
                     { name: "TransportCompany", type: "text", width: 100 },
-                    { name: "Importer", type: "select", type: "text", width: 100 },
-                    //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
-                    { type: "control" }
+                    { name: "Importer", type: "text", width: 100 }
+            /*        { type: "control" }*/
                 ]
             });
             alert("finish get 2 name to table");
 
 
         }
+
+        //function UpdateRow(a) {
+        //    alert(a);
+        //}
+
+    //    finishDelete: function(deletedItem, deletedItemIndex) {
+    //        var grid = this._grid;
+    //        grid.option("data").splice(deletedItemIndex, 1);
+    //        grid.reset();
+    //    }
+    //};
+
+
+
+        function SendGateToArchive(a) {
+            console.log(a)
+
+            id=deletedItem.id
+            ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
+     
+
+        }
+
+
+        function PUTSCB() {
+            console.log("Sent to Archive")
+        }
+        function PUTECB() {
+            console.log("Didnt Sent to Archive")
+        }
+
+
+
+
     </script>
 
 

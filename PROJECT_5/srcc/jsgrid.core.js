@@ -1545,6 +1545,7 @@
                     item: deletingItem,
                     itemIndex: deletingItemIndex
                 });
+              
             });
         }
     };

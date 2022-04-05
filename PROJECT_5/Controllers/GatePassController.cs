@@ -25,5 +25,17 @@ namespace PROJECT_5.Controllers
             GatePass gatePass = new GatePass();
             return gatePass.ReadgatePass(transportCompany);
         }
+
+        //public List<GatePass> Get()
+        //{
+        //    GatePass gatePass = new GatePass();
+        //    return gatePass.ReadgatePassList ();
+        //}
+
+        public void Put(int id)
+        {
+            GatePass gatePass = new GatePass();
+            gatePass.SendGateToArchive(id);
+        }
     }
 }

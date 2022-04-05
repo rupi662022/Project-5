@@ -24,6 +24,8 @@
 
 
         $(document).ready(function () {
+            U = JSON.parse(localStorage.getItem('User'));
+            UserName = U.UserName
         $('.chkbox').click(function () {
             checkBox = this.id
             checkBoxValue = $(this).attr('value')

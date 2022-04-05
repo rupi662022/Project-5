@@ -86,6 +86,7 @@
 
             if(this.deleteButton) {
                 $result = $result.add(this._createDeleteButton(item));
+             
             }
 
             return $result;
@@ -161,6 +162,7 @@
         _createDeleteButton: function(item) {
             return this._createGridButton(this.deleteButtonClass, this.deleteButtonTooltip, function(grid, e) {
                 grid.deleteItem(item);
+           
                 e.stopPropagation();
             });
         },

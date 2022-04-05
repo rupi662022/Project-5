@@ -19,7 +19,7 @@ namespace PROJECT_5.Models.DAL
 
         //}
 
-
+        //ReadgatePassList
 
         ////בדיקה טבלה
 
@@ -37,6 +37,7 @@ namespace PROJECT_5.Models.DAL
                 while (dataReader.Read())
                 {
                     GatePass a = new GatePass();
+                    a.Id = Convert.ToInt32(dataReader["GPS_Id"]);
                     a.ContainerNum = (string)dataReader["GPS_ContainerNum"];
                     a.ContainerType = (string)dataReader["GPS_ContainerType"];
                     a.TransportCompany = (string)dataReader["GPS_TransportCompany"];
@@ -239,6 +240,151 @@ namespace PROJECT_5.Models.DAL
 
 
 
+        //SEND GATEPASS TO ARCHIVE PROC TRY
+
+        //public int SendGateToArchive(int id)
+        //{
+        //    //int res = 0;
+        //    SqlConnection con = null;
+        //    int numEffected = 0;
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        using (SqlCommand cmd = new SqlCommand("SendGateToArchive", con))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@Id", g.Id);
+        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
+
+
+        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
+        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
+        //            //cmd.ExecuteNonQuery();
+        //            //var result = returnParameter.Value;
+        //            numEffected = cmd.ExecuteNonQuery();
+
+        //            //if (result.Equals(1))
+        //            //{
+        //            //    res = 1;
+
+        //            //}
+        //            //return res;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    return numEffected;
+        //}
+
+
+        //SEND GATEPASS TO ARCHIVE
+
+        public void SendGateToArchive( int id)
+        {
+            SqlConnection con = null;
+
+            try
+            {
+                con = Connect("FinalProject");
+                SqlCommand selectCommand = createSelectCommandSendGateToArchive(con, id);
+                SqlDataReader dataReader = selectCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("failed in reading of artical", ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+
+        private SqlCommand createSelectCommandSendGateToArchive(SqlConnection con, int id)
+        {
+            string commandStr = "UPDATE SHAY_GatePass SET GPS_IsActive=N'-' Where GPS_Id=@Id and GPS_IsActive<>N'-'";
+            SqlCommand cmd = createCommand(con, commandStr);
+            cmd.Parameters.Add("@Id", SqlDbType.Int);
+            cmd.Parameters["@Id"].Value = id;
+   
+            return cmd;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //עדכון גייטפס
+        //public int UpdateGatePass(GatePass g)
+        //{
+        //    //int res = 0;
+        //    SqlConnection con = null;
+        //    int numEffected = 0;
+        //    try
+        //    {
+        //        con = Connect("FinalProject");
+        //        using (SqlCommand cmd = new SqlCommand("UpdateGatePass", con))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+
+        //            cmd.Parameters.AddWithValue("@ContainerNum", g.ContainerNum);
+        //            cmd.Parameters.AddWithValue("@IsActive", g.IsActive);
+        //            cmd.Parameters.AddWithValue("@CreatedDate", g.CreatedDate);
+
+        //            //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
+        //            //returnParameter.Direction = ParameterDirection.ReturnValue;
+        //            //cmd.ExecuteNonQuery();
+        //            //var result = returnParameter.Value;
+        //            numEffected = cmd.ExecuteNonQuery();
+
+        //            //if (result.Equals(1))
+        //            //{
+        //            //    res = 1;
+
+        //            //}
+        //            //return res;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // write to log
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        if (con != null)
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+        //    return numEffected;
+        //}
 
 
 
