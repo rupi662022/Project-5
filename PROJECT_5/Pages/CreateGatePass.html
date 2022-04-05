@@ -25,7 +25,8 @@
 
         $(document).ready(function () {
             U = JSON.parse(localStorage.getItem('User'));
-           ('.user-name').append(U.UserName)
+            ('.user-name').append(U.UserName)
+       /*     let email = U.UserEmail*/
         $('.chkbox').click(function () {
             checkBox = this.id
             checkBoxValue = $(this).attr('value')
@@ -45,8 +46,9 @@
 
         function submitGatePass() {
 
-
-            //let email = localStorage["email"];
+           
+           
+            //let email = localStorage["User.Email"];
 
             var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
             let gatePass = {
