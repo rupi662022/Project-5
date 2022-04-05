@@ -65,6 +65,7 @@
         finishDelete: function(deletedItem, deletedItemIndex) {
             var grid = this._grid;
             grid.option("data").splice(deletedItemIndex, 1);
+            sendToArchive(deletedItem);
             grid.reset();
         }
     };

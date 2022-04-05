@@ -29,27 +29,29 @@
         $(document).ready(function () {
             let transportCompany = "אא";
             ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
-   /*         $(".jsgrid-button jsgrid-delete-button").click(SendToArchive);*/
+         
 
-
-        })
-
-
-
-       
-        //function chooseSeries() {
-        //    let select = "אא";
-        //    ajaxCall("GET", "../api/GatePass?transportCompany=" + select, "", getSCB, getECB);
-        //    alert("finish get company name to table")
-
+        });
+            
         //}
         function getECB() {
             alert("cant get company table")
         }
 
         function getSCB(GatePasList) {
-            //alert("finish get company name to table");
             GateList = GatePasList;
+
+            //GateList.blabla = [
+            //    { Name: "", Id: 0 },
+            //    { Name: "Test1", Id: 1 },
+            //    { Name: "2", Id: 2 },
+            //    { Name: "3", Id: 3 },
+            //    { Name: "4", Id: 4 },
+            //    { Name: "5", Id: 5 },
+            //    { Name: "6", Id: 6 },
+            //    { Name: "7", Id: 7 }
+            //];
+            //alert("finish get company name to table");
             $("#GatePas").jsGrid({
                 data: GateList,
                 height: "70%",
@@ -62,15 +64,39 @@
                 autoload: true,
                 pageSize: 15,
                 pageButtonCount: 5,
-                deleteConfirm: "Do you really want to delete the client?",
+                deleteConfirm: function (item) {
+                    return "The client \"" + item.Id + "\" will be removed. Are you sure?";
+                },
                 controller: GateList,
                 fields: [
+
                     { name: "Id", type: "text", width: 100 },
                     { name: "ContainerNum", type: "text", width: 100 },
                     { name: "ContainerType", type: "text", width: 100 },
                     { name: "TransportCompany", type: "text", width: 100 },
-                    { name: "Importer", type: "text", width: 100 }
+                    { name: "Importer", type: "text", width: 100 },
             /*        { type: "control" }*/
+
+                    //{ name: "ContainerNum", type: "text", width: 50 },
+                    //{ name: "ContainerType", type: "text", width: 50 },
+                    //{ name: "TransportCompany", type: "text", width: 100 },
+                    //{ name: "Importer", type: "text", width: 100 },
+                    //{ name: "note", type: "select", items: GateList.blabla, valueField: "Id", textField: "Name" } ,
+
+                    //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+                    {
+                        type: "control",
+                        modeSwitchButton: false,
+                        editButton: false,
+                        headerTemplate: function () {
+                            return $("<button>").attr("type", "button").text("Add")
+                                .on("click", function () {
+                                    showDetailsDialog("Add", {});
+                                    sendToArchive(item);
+                                });
+                        }
+                    }
+                    
                 ]
             });
             alert("finish get 2 name to table");
@@ -78,25 +104,13 @@
 
         }
 
-        //function UpdateRow(a) {
-        //    alert(a);
-        //}
 
-    //    finishDelete: function(deletedItem, deletedItemIndex) {
-    //        var grid = this._grid;
-    //        grid.option("data").splice(deletedItemIndex, 1);
-    //        grid.reset();
-    //    }
-    //};
+        function sendToArchive(item) {
+            console.log(item)
 
-
-
-        function SendGateToArchive(a) {
-            console.log(a)
-
-            id=deletedItem.id
+            id = item.Id
             ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
-     
+
 
         }
 
@@ -107,6 +121,63 @@
         function PUTECB() {
             console.log("Didnt Sent to Archive")
         }
+
+
+            //$("#age").val(client.Age);
+            //$("#address").val(client.Address);
+            //$("#country").val(client.Country);
+            //$("#married").prop("checked", client.Married);
+
+ 
+
+
+
+
+        
+        //$("#detailsDialog").dialog({
+        //    autoOpen: false,
+        //    width: 400,
+        //    close: function () {
+        //        $("#detailsForm").validate().resetForm();
+        //        $("#detailsForm").find(".error").removeClass("error");
+        //    }
+        //});
+
+        //$("#detailsForm").validate({
+        //    rules: {
+        //        name: "required",
+        //        age: { required: true, range: [18, 150] },
+        //        address: { required: true, minlength: 10 },
+        //        country: "required"
+        //    },
+        //    messages: {
+        //        name: "Please enter name",
+        //        age: "Please enter valid age",
+        //        address: "Please enter address (more than 10 chars)",
+        //        country: "Please select country"
+        //    },
+        //    submitHandler: function () {
+        //        formSubmitHandler();
+        //    }
+        //});
+
+        //alert(deleteItem);
+        ////function UpdateRow(a) {
+        //    alert(a);
+        //}
+
+    //    finishDelete: function(deletedItem, deletedItemIndex) {
+    //        var grid = this._grid;
+    //        grid.option("data").splice(deletedItemIndex, 1);
+    //        grid.reset();
+    //    }
+    ////};
+
+    //    deleteItem: function(deletingClient) {
+    //        var clientIndex = $.inArray(deletingClient, this.clients);
+    //        this.clients.splice(clientIndex, 1);
+    //    }
+
 
 
 
