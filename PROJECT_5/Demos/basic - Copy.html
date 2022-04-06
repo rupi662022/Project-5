@@ -11,7 +11,7 @@
 
     <script src="../external/jquery/jquery-1.8.3.js"></script>
     <!--<script src="db.js"></script>-->
-
+    <!--<script src="../srcc/fields/jsgrid.field.js"></script>-->
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -106,12 +106,15 @@
                     { name: "Id", title: 'קוד גייטפס', type: "text", width: 100 },
                     { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100 },
                     { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100 },
-                    {
-                        name: "TransportCompany", title: "חברת תובלה", type: "select", items: function (item) {
-                            return item.transportCompany;
-                        },
-                        /* valueField: "Id"*/ width: 100
-                    },
+
+                    { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100 },
+
+                    //{
+                    //    name: "TransportCompany", title: "חברת תובלה", type: "select", items: function (item) {
+                    //        return item.transportCompany;
+                    //    },
+                    //    /* valueField: "Id"*/ width: 100
+                    //},
 
                     { name: "Importer", type: "text", title: "יבואן", width: 100 },
 
