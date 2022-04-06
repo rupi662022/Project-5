@@ -28,60 +28,56 @@
     <script>
 
         $(document).ready(function () {
-            /*    $("#myForm").submit(ReadUser)*/
+            $("#logId").submit(CeckUser)
             if (localStorage.getItem('User')) {
-                window.location.href = "ManageGates.html";
+                window.location.href = "TableTest.html";
             }
 
         })
 
 
 
-        function ReadUser() {
+        function CeckUser() {
             let email = $("#user-name").val();
              password = $("#user-password").val();
             let url = "../api/User?userEmail=" + email;
-            ajaxCall("GET", url, "", scb, ecb);
+            ajaxCall("GET", url, "", Sucse, ecb);
             return false;
         }
-
-
-        //function ReadUser() {---try for procedure
-        //    /*  let email = $("#user-name").val();*/
-        //    password = $("#user-password").val();
-        //    let url = "../api/User"
-        //    ajaxCall("GET", url, "", scb, ecb);
-        //    return false;
-        //}
 
 
         //window.localStorage.setItem("email", JSON.stringify(U.UserEmail));
         //window.localStorage.setItem("name", JSON.stringify(U.UserEmail));
 
 
-        function scb(U) {
+        function Sucse(U) {
             console.log(U);
             if (U.UserPassword == password) {
-                window.location.href = "ManageGates.html";
-                saveToLocalS(U);
+                window.location.href = "TableTest.html";
+                localSave(U);
             }
-
             else {
-                alert("incorrect login details")
-                window.location.href = "register.html";
-
+                ecb()
             }
         }
 
         function ecb(err) {
-            console.log(err);
+            //console.log(err);
             alert("user is not found")
+            window.location.href = "registerUser.html";
+
         }
 
-        function saveToLocalS(U) {
+        function localSave(U) {
             localStorage.setItem('User', JSON.stringify(U));
         }
 
+
+
+        function disConnect() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
     </script>
 
 
@@ -105,7 +101,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form-horizontal form-simple"  novalidate>
+                        <form class="form-horizontal form-simple" id="logId" novalidate>
                             <fieldset class="form-group position-relative has-icon-left mb-0">
                                 <input type="text" class="form-control form-control-lg input-lg" id="user-name" placeholder="אימייל" required>
                                 <div class="form-control-position">
@@ -118,23 +114,29 @@
                                     <i class="fa fa-key"></i>
                                 </div>
                             </fieldset>
-                            <div class="form-group row">
+                            <div class="form-group row" >
                                 <!--<div class="col-md-6 col-12 text-center text-md-left">
-                                    <fieldset>
-                                        <input type="checkbox" id="remember-me" class="chk-remember">
-                                        <label for="remember-me"> זכור אותי</label>
-                                    </fieldset>
-                                </div>-->
+                        <fieldset>
+                            <input type="checkbox" id="remember-me" class="chk-remember">
+                            <label for="remember-me"> זכור אותי</label>
+                        </fieldset>
+                    </div>-->
                                 <!--<div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">שכחת סיסמה?</a></div>-->
                             </div>
-                            <button onclick="ReadUser()" type="submit" class="btn btn-info btn-lg btn-block"></><i class="ft-unlock"></i> התחבר</button>
+                            <button onclick="CeckUser()" type="submit" class="btn btn-info btn-lg btn-block"></><i class="ft-unlock"></i> התחבר</button>
                         </form>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="">
                         <p class="float-sm-left text-center m-0"><a href="recover-password.html" class="card-link">שכחתי סיסמה</a></p>
-                        <p class="float-sm-right text-center m-0">אין לך פרופיל? <a href="register.html" class="card-link">הירשם </a></p>
+                        <p class="float-sm-right text-center m-0">אין לך פרופיל? <a href="registerUser.html" class="card-link">הירשם </a></p>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="" style="margin-right:100px">
+                        <button onclick="disConnect()" class="btn btn-outline-info btn-min-width btn-glow mr-1 mb-1"> התנתק</button>
                     </div>
                 </div>
             </div>
