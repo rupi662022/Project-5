@@ -179,6 +179,8 @@
     <Content Include="Pages\CompanyTable.html" />
     <Content Include="Pages\data-manipulation.html" />
     <Content Include="Pages\demos.css" />
+    <Content Include="Pages\registerUser.html" />
+    <Content Include="Pages\TableTest.html" />
     <Content Include="Scripts\ajaxCallsStub.js" />
     <Content Include="app-assets\css-rtl\app.css" />
     <Content Include="app-assets\css-rtl\app.min.css" />
