@@ -76,16 +76,16 @@ namespace PROJECT_5.Models.DAL
         //    return UsersList;
         //}
 
-        private SqlCommand createSelectCommandNewsByName(SqlConnection con, string name, int user)
-        {
-            string commandStr = "SELECT * FROM UsersArticles_2022 u join Articles_2022 a on u.newsId = a.newsId WHERE [name] = @name and userId =@user and u.statusAr='True' ";
-            SqlCommand cmd = createCommand(con, commandStr);
-            cmd.Parameters.Add("@name", SqlDbType.NVarChar);
-            cmd.Parameters["@name"].Value = name;
-            cmd.Parameters.Add("@user", SqlDbType.Int);
-            cmd.Parameters["@user"].Value = user;
-            return cmd;
-        }
+        //private SqlCommand createSelectCommandNewsByName(SqlConnection con, string name, int user)
+        //{
+        //    string commandStr = "SELECT * FROM UsersArticles_2022 u join Articles_2022 a on u.newsId = a.newsId WHERE [name] = @name and userId =@user and u.statusAr='True' ";
+        //    SqlCommand cmd = createCommand(con, commandStr);
+        //    cmd.Parameters.Add("@name", SqlDbType.NVarChar);
+        //    cmd.Parameters["@name"].Value = name;
+        //    cmd.Parameters.Add("@user", SqlDbType.Int);
+        //    cmd.Parameters["@user"].Value = user;
+        //    return cmd;
+        //}
 
 
 
@@ -394,7 +394,7 @@ namespace PROJECT_5.Models.DAL
                         cmd.Parameters.AddWithValue("@UserName", user.UserName);
                         cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
                          cmd.Parameters.AddWithValue("@UserPassword", user.UserPassword);
-                    cmd.Parameters.AddWithValue("@UserType", user.UserType);
+                    cmd.Parameters.AddWithValue("@UserCompany", user.UserCompany);
 
                     //var returnParameter = cmd.Parameters.Add("@results", SqlDbType.Int);
                     //returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -519,7 +519,7 @@ namespace PROJECT_5.Models.DAL
                     u.UserEmail = (string)dr["USR_Email"];
                     u.UserPassword = (string)dr["USR_Password"];
                     u.UserName = (string)dr["USR_UserName"];
-                    u.UserType = (string)dr["USR_Type"];
+                    u.UserCompany = (string)dr["USR_Company"];
 
 
                 }

@@ -41,14 +41,14 @@
 			let userFull = $("#userFull").val();
 			let email = $("#email").val();
 			let password = $("#password").val();
-			let companyId = $("#userType").val();
+			let companyName = $("#userType").val();
 
 			let adduser = {
 				UserID: userNum,
 				UserName: userFull,
 				UserEmail: email,
 				UserPassword: password,
-				UserType: companyId
+                CompanyName: companyName,
 			}
 
 			ajaxCall("POST", "../api/User", JSON.stringify(adduser), postSCB, postECB);
@@ -144,7 +144,7 @@
 												<div class="help-block font-small-3"></div>
 											</fieldset>
 											<fieldset class="form-group position-relative has-icon-left">
-												<input type="text" name="userType" id="userType" class="form-control input-lg" placeholder="מספר חברה" tabindex="4" required>
+												<input type="text" name="userType" id="userType" class="form-control input-lg" placeholder="שם חברה" tabindex="4" required>
 												<div class="form-control-position">
 													<i class="ft-shield"></i>
 												</div>

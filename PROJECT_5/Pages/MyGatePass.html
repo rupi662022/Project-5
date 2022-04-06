@@ -27,8 +27,14 @@
     <script>
 
         $(document).ready(function () {
+
+            if (localStorage.getItem('User') == null) {
+                window.location.href = "login.html";
+            }
+
+            U = JSON.parse(localStorage.getItem('User'));
             let transportCompany = "אא";
-            ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
+            ajaxCall("GET", "../api/GatePass?" +  ,"", getSCB, getECB);
 
 
             //$('.jsgrid-delete-button').click(function () {

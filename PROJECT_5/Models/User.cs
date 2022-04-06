@@ -12,24 +12,24 @@ namespace PROJECT_5.Models
         string userName;
         string userEmail;
         string userPassword;
-        string userType;
+        string userCompany;
 
         public User() { }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userType)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany)
         {
             UserID = userID;
             UserName = userName;
             UserEmail = userEmail;
             UserPassword = userPassword;
-            UserType = userType;
+            UserCompany = userCompany;
         }
 
         public int UserID { get => userID; set => userID = value; }
         public string UserName { get => userName; set => userName = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public string UserPassword { get => userPassword; set => userPassword = value; }
-        public string UserType { get => userType; set => userType = value; }
+        public string UserCompany { get => userCompany; set => userCompany = value; }
 
         //public User(string userEmail, string userPassword)
         //{
