@@ -31,13 +31,13 @@ namespace PROJECT_5.Models
 
 
 
-        public GatePass(int id, string containerNum, string containerType, string transportCompany, string importer) {
-            this.id = id;
-            this.containerNum = containerNum;
-            this.containerType = containerType;
-            this.transportCompany = transportCompany;
-            this.importer = importer;
-        }
+        //public GatePass(int id, string containerNum, string containerType, string transportCompany, string importer) { 
+        //        this.id = id;
+        //    this.containerNum = containerNum;
+        //    this.containerType = containerType;
+        //    this.transportCompany = transportCompany;
+        //    this.importer = importer;
+        //}
 
 
 
