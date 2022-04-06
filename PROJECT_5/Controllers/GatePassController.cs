@@ -37,5 +37,20 @@ namespace PROJECT_5.Controllers
             GatePass gatePass = new GatePass();
             gatePass.SendGateToArchive(id);
         }
+
+
+        //public void Put()
+        //{
+        //    GatePass g = new GatePass();
+        //    g.UpdateGatePass(this);
+        //}
+
+
+        public HttpResponseMessage Put([FromBody] GatePass g)
+        {
+            g.UpdateGatePass();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
     }
 }
