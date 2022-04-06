@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,35 +7,128 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>Basic Forms - Robust - Responsive Bootstrap 4 Admin Dashboard Template for Web Application</title>
+
+    <title>jsGrid - Basic Scenario</title>
+
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMuli:300,400,500,700" rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
+
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/custom-rtl.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-content-menu.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="demos.css" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
     <script src="../Scripts/ajaxCalls.js"></script>
-    <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <script src="../Scripts/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../css/theme.css" />
+
+    <script src="../external/jquery/jquery-1.8.3.js"></script>
+
+    <script src="../srcc/jsgrid.core.js"></script>
+    <script src="../srcc/jsgrid.load-indicator.js"></script>
+    <script src="../srcc/jsgrid.load-strategies.js"></script>
+    <script src="../srcc/jsgrid.sort-strategies.js"></script>
+    <script src="../srcc/jsgrid.field.js"></script>
+    <script src="../srcc/fields/jsgrid.field.text.js"></script>
+    <script src="../srcc/fields/jsgrid.field.number.js"></script>
+    <script src="../srcc/fields/jsgrid.field.select.js"></script>
+    <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../srcc/fields/jsgrid.field.control.js"></script>
+
+
     <script>
 
-
         $(document).ready(function () {
-
+            let transportCompany = "אא";
+            ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
 
 
         });
 
+        //}
+        function getECB() {
+            alert("cant get company table")
+        }
+
+        function getSCB(GatePasList) {
+            GateList = GatePasList;
+            $("#GatePas").jsGrid({
+                data: GateList,
+                height: "70%",
+                width: "100%",
+                filtering: true,
+                editing: true,
+                inserting: true,
+                sorting: true,
+                paging: true,
+                autoload: true,
+                pageSize: 15,
+                pageButtonCount: 5,
+                deleteConfirm: function (item) {
+                    return "The client \"" + item.Id + "\" will be removed. Are you sure?";
+                },
+                controller: GateList,
+                fields: [
+
+                    { name: "Id", type: "text", width: 100 },
+                    { name: "ContainerNum", type: "text", width: 100 },
+                    { name: "ContainerType", type: "text", width: 100 },
+                    { name: "TransportCompany", type: "text", width: 100 },
+                    { name: "Importer", type: "text", width: 100 },
+                    {
+                        type: "control",
+                        modeSwitchButton: false,
+                        editButton: false,
+                        headerTemplate: function () {
+                            return $("<button>").attr("type", "button").text("Add")
+                                .on("click", function () {
+                                    showDetailsDialog("Add", {});
+                                    sendToArchive(item);
+                                });
+                        }
+                    }
+                ]
+            });
+            //alert("finish get 2 name to table");
+        }
+
+
+        function sendToArchive(item) {
+            console.log(item)
+            id = item.Id
+            ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
+        }
+
+
+        function PUTSCB() {
+            console.log("Sent to Archive")
+        }
+        function PUTECB() {
+            console.log("Didnt Sent to Archive")
+        }
 
 
 
 
     </script>
+
+
 </head>
-<body class="vertical-layout vertical-content-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
+
+
+
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-hide-on-scroll navbar-border navbar-shadow navbar-brand-center">
@@ -60,7 +153,7 @@
                     <ul class="nav navbar-nav float-right">
 
                         <li class="dropdown dropdown-user nav-item">
-                            <a class="fa fa-id-badge" href="#" data-toggle="dropdown"><span class="user-name">   User Name</span></a>
+                            <a class="fa fa-id-badge" style="margin-left:10px" href="#" data-toggle="dropdown"><span class="user-name">   User Name</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!--<a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>-->
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="login-simple.html"><i class="ft-power"></i> Logout</a>
@@ -73,25 +166,64 @@
     </nav>
 
     <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+    <div  class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow" role="navigation" data-menu="menu-wrapper">
+        <div class="navbar-container main-menu-content container center-layout" data-menu="menu-container" >
+            <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="index.html" data-toggle="dropdown"><i class="icon-home"></i><span data-i18n="nav.dash.main">עמוד הבית</span></a>
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-note"></i><span data-i18n="nav.templates.main">יצירת גייטפס</span></a>
+
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-drawer"></i><span data-i18n="nav.layouts.temp">ניהול גייטפסים</span></a>
+
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-compass"></i><span data-i18n="nav.category.general"> נהגים</span></a>
+
+                </li>
+                <li class="dropdown mega-dropdown nav-item" data-menu="megamenu">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-user-following"></i><span data-i18n="nav.category.pages">עמילי מכס</span></a>
+
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-briefcase"></i><span data-i18n="nav.category.ui">לקוחות</span></a>
+
+                </li>
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="icon-screen-desktop"></i><span data-i18n="nav.category.forms">דשבורד</span></a>
+
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h2 class="content-header-title">מערכת לניהול גייטפסים</h2>
+                    <h2 class="content-header-title">יצירת גייטפס</h2>
                 </div>
             </div>
 
-
-            <div class="main-menu menu-static menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+            <div class="main-menu menu-static menu-light menu-accordion menu-shadow" data-scroll-to-active="true" style="width:15%">
                 <div class="main-menu-content">
                     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                         <li class=" nav-item"><a href="index.html"><i class="fa fa-home"></i><span class="menu-title" data-i18n="nav.dash.main">עמוד הבית</span></a></li>
-                        <li class=" nav-item" ><a href="#"><i class="fa fa-file-text-o"></i><span class="menu-title" data-i18n="nav.templates.main">יצירת גייטפס</span></a></li>
+                        <li class=" nav-item" style="border: thin solid black;"><a href="#"><i class="fa fa-file-text-o"></i><span class="menu-title" data-i18n="nav.templates.main"><b>יצירת גייטפס</b></span></a></li>
                         <li class=" nav-item"><a href="#"><i class="fa fa-server"></i><span class="menu-title" data-i18n="nav.page_layouts.main">ניהול גייטפסים</span></a></li>
                         <li class=" nav-item"><a href="#"><i class="fa fa-car"></i><span class="menu-title" data-i18n="nav.navbars.main">נהגים</span><!--<span class="badge badge badge-success float-right mr-2">New</span>--></a></li>
                         <li class=" nav-item"><a href="#"><i class="fa fa-users"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">עמילי מכס</span></a></li>
-                        <li class=" nav-item" style="border: thin solid black;"><a href="#"><i class="icon-equalizer"></i><span class="menu-title" data-i18n="nav.horz_nav.main"><b>לקוחות</b></span></a></li>
-                        <li class=" nav-item"><a href="#"><i class="icon-direction"></i><span class="menu-title" data-i18n="nav.page_headers.main">Page Headers</span></a>
+                        <li class=" nav-item"><a href="#"><i class="icon-equalizer"></i><span class="menu-title" data-i18n="nav.horz_nav.main">Horizontal Nav</span></a></li>
+                        <li class=" nav-item">
+                            <a href="#"><i class="icon-direction"></i><span class="menu-title" data-i18n="nav.page_headers.main">Page Headers</span></a>
                             <ul class="menu-content">
                                 <li><a class="menu-item" href="headers-breadcrumbs-basic.html" data-i18n="nav.page_headers.headers_breadcrumbs_basic">Breadcrumbs basic</a></li>
                                 <li><a class="menu-item" href="headers-breadcrumbs-top.html" data-i18n="nav.page_headers.headers_breadcrumbs_top">Breadcrumbs top</a></li>
@@ -123,23 +255,40 @@
 
             <div class="content-body">
                 <!-- Basic form layout section start -->
+                <section id="basic-form-layouts">
 
-                <!--//טבלה-->
-                <!-- // Basic form layout section end -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div></div>
+                                <div class="card-header">
+
+                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body card-dashboard ">
+                                        <p>ניתן להוסיף, לערוך ולמחוק גייטפסים</p>
+
+                                        <div id="GatePas"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 
     <footer class="footer footer-static footer-light navbar-border">
@@ -147,13 +296,5 @@
     </footer>
 
 
-    <script src="../app-assets/vendors/js/vendors.min.js"></script>
-
-    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="../../../app-assets/vendors/js/charts/jquery.sparkline.min.js"></script>
-    <script src="../../../app-assets/vendors/js/ui/headroom.min.js"></script>
-    <script src="../../../app-assets/js/core/app-menu.js"></script>
-    <script src="../../../app-assets/js/core/app.js"></script>
-    <script src="../../../app-assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
 </body>
 </html>
