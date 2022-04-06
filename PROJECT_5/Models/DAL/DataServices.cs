@@ -22,6 +22,10 @@ namespace PROJECT_5.Models.DAL
         //ReadgatePassList
 
         ////בדיקה טבלה
+        ///
+        
+
+
 
         public List<GatePass> ReadgatePass(string TransportCompany)
         {
