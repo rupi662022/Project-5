@@ -1,31 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PROJECT_5.Models
 {
-    public class GmailAPI
+    public class Gmail
     {
-        string CLIENT_ID;
-        string API_KEY;
 
-        public GmailAPI()
-        {
+        public string From { get; set; }
 
+        public string To { get; set; }
 
+        public string Body { get; set; }
 
-        }
+        public DateTime MailDateTime { get; set; }
 
-        public void InitAPI()
-        {
-         this.CLIENT_ID = "444171297629-8shug2a3urepctfatbqcmuohpsvaog7k.apps.googleusercontent.com";
-         this.API_KEY = "AIzaSyDSdMaEiTVy_P0IBuvRWrEZSdnHJzmGJH8";
-           
+        public List<string> Attachments { get; set; }
 
-
-        }
-
+        public string MsgID { get; set; }
 
     }
 }
