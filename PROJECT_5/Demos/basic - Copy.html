@@ -22,26 +22,29 @@
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
 
-
+    <style>
+        #Add {
+            font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+            font-weight: 300;
+            font-size: 14px;
+            float:right;
+            margin-right:50px;
+        }
+    </style>
+   
     <!--<script src="../test/hebrew.js"></script>-->
 
     <script>
 
         $(document).ready(function () {
             let transportCompany = "אא";
-            //ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
+ 
+
+            $('#Add').on("click", function () {
+                window.location.href = "basic.html";
+            });
 
 
-
-            //}
-            //function getECB() {
-            //    alert("cant get company table")
-            //}
-
-            //function getSCB(GatePasList) {
-
-            //    GateList = GatePasList;
-           
             $.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
@@ -49,106 +52,113 @@
                 data: "json"
             }).done(function (data) {
 
-            $("#GatePas").jsGrid({
-             
-                height: "70%",
-                width: "100%",
-                filtering: true,
-                editing: true,
-                inserting: true,
-                sorting: true,
-                sorter:true,
-                paging: true,
-                autoload: true,
-                pageSize: 15,
-                pageButtonCount: 5,
-                deleteConfirm: function (item) {
-                    return "?יעבור לארכיון. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
-                },
-                controller: {
-                    //loadData: function (filter) {
-                    //    return $.ajax({
-                    //        type: "GET",
-                    //        url: "../api/GatePass?transportCompany=" + transportCompany,
-                    //        data: filter
-                    //    });
+                $("#GatePas").jsGrid({
 
-                    loadData: function (filter) {
-                        return $.grep(data, function (item) {
-                            // client-side filtering below (be sure conditions are correct)
-                            return (!filter.Id || item.id.indexOf(filter.id) > -1)
-                                && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
-                                && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
-                                && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1);
-                        });
-                  
+                    height: "70%",
+                    width: "100%",
+                    filtering: true,
+                    editing: true,
+                    inserting: true,
+                    sorting: true,
+                    sorter: true,
+                    paging: true,
+                    autoload: true,
+                    pageSize: 15,
+                    pageButtonCount: 5,
+                    deleteConfirm: function (item) {
+                        return "?יעבור לארכיון. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                     },
-                    updateItem: function (item) {
-                        return $.ajax({
-                            type: "PUT",
-                            url: "../api/GatePass",
-                            data: item
-                        });
+                    controller: {
 
+                        loadData: function (filter) {
+                            return $.grep(data, function (item) {
+                                // client-side filtering below (be sure conditions are correct)
+                                return (!filter.Id || item.id.indexOf(filter.id) > -1)
+                                    && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
+                                    && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
+                                    && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
+                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1);
+                            });
+
+                        },
+                        updateItem: function (item) {
+                            return $.ajax({
+                                type: "PUT",
+                                url: "../api/GatePass",
+                                data: item
+                            });
+
+                        },
+                        deleteItem: function (item) {
+                            return $.ajax({
+                                type: "PUT",
+                                url: "../api/GatePass?id=" + item.Id,
+                                data: item
+                            });
+
+                        }
                     },
-                    deleteItem: function (item) {
-                        return $.ajax({
-                            type: "PUT",
-                            url: "../api/GatePass?id=" + item.Id,
-                            data: item
-                        });
+                    fields: [
+                        { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false },
+                        { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100 },
+                        { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100 },
+                        { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100 },
 
-                    }
-                },
-                fields: [
-                    { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false },
-                    { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100 },
-                    { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100 },
-                    { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100 },
+                        //{
+                        //    name: "TransportCompany", title: "חברת תובלה", type: "select", items: function (item) {
+                        //        return item.transportCompany;
+                        //    },
+                        //    /* valueField: "Id"*/ width: 100
+                        //},
 
-                    //{
-                    //    name: "TransportCompany", title: "חברת תובלה", type: "select", items: function (item) {
-                    //        return item.transportCompany;
-                    //    },
-                    //    /* valueField: "Id"*/ width: 100
-                    //},
+                        { name: "Importer", type: "text", title: "יבואן", width: 100 },
 
-                    { name: "Importer", type: "text", title: "יבואן", width: 100 },
-
-                { type: "control" }
-
-
-
-                //{ name: "ContainerNum", type: "text", width: 50 },
-                //{ name: "ContainerType", type: "text", width: 50 },
-                //{ name: "TransportCompany", type: "text", width: 100 },
-                //{ name: "Importer", type: "text", width: 100 },
-                //{ name: "note", type: "select", items: GateList.blabla, valueField: "Id", textField: "Name" } ,
+                        {
+                            type: "control",
+                            //insertButtonClass: function () {
+                            //    return $("<button>").attr("type", "button")//מוסיף שורה שלא צריך
+                            //    .on("click", function () {
+                            //        window.location.href = "CreateGatePass.html";
+                            //    });
+                            //}
+                        },
 
 
 
 
-                //{
-                //    type: "control",
-                //    updateButtonTooltip: true,
-                //    modeSwitchButton: false,
-                //    editButton: true,
-                //    headerTemplate: function () {
-                //        return $("<button>").attr("type", "button").text("Add")//מוסיף שורה שלא צריך
-                //            .on("click", function () {
-                //                showDetailsDialog("Add", {});
-                //                sendToArchive(item);
-                //            });
-                //    }
-                //}
 
 
-            ]
-        });
-   
-     });
 
-  })
+                        //{ name: "ContainerNum", type: "text", width: 50 },
+                        //{ name: "ContainerType", type: "text", width: 50 },
+                        //{ name: "TransportCompany", type: "text", width: 100 },
+                        //{ name: "Importer", type: "text", width: 100 },
+                        //{ name: "note", type: "select", items: GateList.blabla, valueField: "Id", textField: "Name" } ,
+
+
+
+
+                        //{
+                        //    type: "control",
+                        //    updateButtonTooltip: true,
+                        //    modeSwitchButton: false,
+                        //    editButton: true,
+                        //    headerTemplate: function () {
+                        //        return $("<button>").attr("type", "button").text("Add")//מוסיף שורה שלא צריך
+                        //            .on("click", function () {
+                        //                showDetailsDialog("Add", {});
+                        //                sendToArchive(item);
+                        //            });
+                        //    }
+                        //}
+
+
+                    ]
+                });
+
+            });
+
+        })
 
 
 
@@ -163,6 +173,7 @@
 </head>
 <body>
     <h1>Basic Scenario</h1>
+   <div> <button id="Add">הוסף גייטפס חדש</button></div>
     <div id="GatePas"></div>
 
     <!--<div id="jsGrid"></div>-->
