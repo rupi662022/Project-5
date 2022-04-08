@@ -6198,7 +6198,6 @@
     <Content Include="Scripts\TaskAjax.js" />
     <Content Include="srcc\fields\jsgrid.field.checkbox.js" />
     <Content Include="srcc\fields\jsgrid.field.control.js" />
-    <Content Include="srcc\fields\jsgrid.field.js" />
     <Content Include="srcc\fields\jsgrid.field.number.js" />
     <Content Include="srcc\fields\jsgrid.field.select.js" />
     <Content Include="srcc\fields\jsgrid.field.text.js" />

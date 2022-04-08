@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>jsGrid - Basic Scenario</title>
+    <title>ניהול גייטפס</title>
     <link rel="stylesheet" type="text/css" href="demos.css" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>-->
     <script src="../Scripts/ajaxCalls.js"></script>
@@ -10,8 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
 
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-    <!--<script src="db.js"></script>-->
-    <!--<script src="../srcc/fields/jsgrid.field.js"></script>-->
+
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -22,7 +21,9 @@
     <script src="../srcc/fields/jsgrid.field.select.js"></script>
     <script src="../srcc/fields/jsgrid.field.checkbox.js"></script>
     <script src="../srcc/fields/jsgrid.field.control.js"></script>
-    <script src="../test/hebrew.js"></script>
+
+
+    <!--<script src="../test/hebrew.js"></script>-->
 
     <script>
 
@@ -31,17 +32,6 @@
             //ajaxCall("GET", "../api/GatePass?transportCompany=" + transportCompany, "", getSCB, getECB);
 
 
-
-            //$('.jsgrid-update-button').click(function () {
-            //    //checkBox = this.id
-            //    //checkBoxValue = $(this).attr('value')
-            //    //if (checkBoxValue == '-') {
-            //    //    $(this).attr('value', '+')
-            //    //    $('#checkBoxValue').val('+')
-            //    EditRow(item);
-            //    console.log('FE')
-
-            //});
 
             //}
             //function getECB() {
@@ -52,39 +42,47 @@
 
             //    GateList = GatePasList;
            
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "../api/GatePass?transportCompany=" + transportCompany,
+                data: "json"
+            }).done(function (data) {
 
             $("#GatePas").jsGrid({
-                /*   data: GateList,*/
+             
                 height: "70%",
                 width: "100%",
                 filtering: true,
-                /*autosearch: true,*/
                 editing: true,
                 inserting: true,
                 sorting: true,
+                sorter:true,
                 paging: true,
                 autoload: true,
                 pageSize: 15,
                 pageButtonCount: 5,
                 deleteConfirm: function (item) {
-                    return "GatePass  \"" + item.Id + "\" will be removed. Are you sure?";
+                    return "?יעבור לארכיון. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                 },
                 controller: {
-                    loadData: function (filter) {
-                        return $.ajax({
-                            type: "GET",
-                            url: "../api/GatePass?transportCompany=" + transportCompany,
-                            data: filter
-                        });
-
-                    },
-                    //insertItem: function (item) {
+                    //loadData: function (filter) {
                     //    return $.ajax({
-                    //        type: "POST",
-                    //        url: "../api/GatePass",
-                    //        data: item
+                    //        type: "GET",
+                    //        url: "../api/GatePass?transportCompany=" + transportCompany,
+                    //        data: filter
                     //    });
-                    //},
+
+                    loadData: function (filter) {
+                        return $.grep(data, function (item) {
+                            // client-side filtering below (be sure conditions are correct)
+                            return (!filter.Id || item.id.indexOf(filter.id) > -1)
+                                && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
+                                && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
+                                && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1);
+                        });
+                  
+                    },
                     updateItem: function (item) {
                         return $.ajax({
                             type: "PUT",
@@ -103,10 +101,9 @@
                     }
                 },
                 fields: [
-                    { name: "Id", title: 'קוד גייטפס', type: "text", width: 100 },
+                    { name: "Id", title: 'קוד גייטפס', type: "text", width: 100, sorting: false },
                     { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100 },
                     { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100 },
-
                     { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100 },
 
                     //{
@@ -119,6 +116,8 @@
                     { name: "Importer", type: "text", title: "יבואן", width: 100 },
 
                 { type: "control" }
+
+
 
                 //{ name: "ContainerNum", type: "text", width: 50 },
                 //{ name: "ContainerType", type: "text", width: 50 },
@@ -149,28 +148,7 @@
    
      });
 
-
-
-
-
-
-//function sendToArchive(item) {
-//        console.log(item)
-
-//        id = item.Id
-//        ajaxCall("PUT", "../api/GatePass?id=" + id, PUTSCB, PUTECB);
-
-
-//}
-
-
-//function PUTSCB() {
-//        console.log("Sent to Archive")
-//}
-//function PUTECB() {
-//        console.log("Didnt Sent to Archive")
-//}
-
+  })
 
 
 
