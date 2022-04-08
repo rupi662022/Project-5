@@ -167,50 +167,50 @@
             
         //});
 
-        function InsertG()
-        {
-            //let email = localStorage["email"];
-            ////email = email.replace(/"/g, '');
+        //function InsertG()
+        //{
+        //    //let email = localStorage["email"];
+        //    ////email = email.replace(/"/g, '');
 
 
-            var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-            let gatePass = {
-                ContainerNum: document.getElementById("ContainerNum").value,
-                ContainerType: document.getElementById("ContType").value,
-                TransportCompany: document.getElementById("TransportCompName").value,
-                Importer: document.getElementById("ImporterName").value,
-                CustomsBroker: document.getElementById("CustomAgentName").value,
-                ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
-                StorageCertificate: document.getElementById("StorageCertificate").value,
-                CaseNumber: document.getElementById("AccountIDNum").value,
-                Note: document.getElementById("Comments").value,
-                OfficeNote: document.getElementById("OfficeComents").value,
-                GoToRepair: document.getElementById("SendToMaintinance").value,
-                ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
-                UserEmail: document.getElementById("WorkerName").value,
-                IsActive:'1' ,
-                CreatedDate: sqlDatetime
-            }
+        //    var sqlDatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        //    let gatePass = {
+        //        ContainerNum: document.getElementById("ContainerNum").value,
+        //        ContainerType: document.getElementById("ContType").value,
+        //        TransportCompany: document.getElementById("TransportCompName").value,
+        //        Importer: document.getElementById("ImporterName").value,
+        //        CustomsBroker: document.getElementById("CustomAgentName").value,
+        //        ShippingCompanyAndLine: document.getElementById("ShippingCompNamePlusLine").value,
+        //        StorageCertificate: document.getElementById("StorageCertificate").value,
+        //        CaseNumber: document.getElementById("AccountIDNum").value,
+        //        Note: document.getElementById("Comments").value,
+        //        OfficeNote: document.getElementById("OfficeComents").value,
+        //        GoToRepair: document.getElementById("SendToMaintinance").value,
+        //        ReturnFromRepair: document.getElementById("ReturnedFromMaintinance").value,
+        //        UserEmail: document.getElementById("WorkerName").value,
+        //        IsActive:'1' ,
+        //        CreatedDate: sqlDatetime
+        //    }
 
             
-            ajaxCall("POST", "../api/GatePass", JSON.stringify(gatePass), postSuccessCB, postErrorCB);
+        //    ajaxCall("POST", "../api/GatePass", JSON.stringify(gatePass), postSuccessCB, postErrorCB);
 
-            return false;
-
-
-        }
+        //    return false;
 
 
+        //}
 
 
-        function postSuccessCB(sec) {
-            console.log("success");
-            console.log(sec);
-        }
 
-        function postErrorCB(err) {
-            alert(err.responseJSON.ExceptionMessage);
-        }
+
+        //function postSuccessCB(sec) {
+        //    console.log("success");
+        //    console.log(sec);
+        //}
+
+        //function postErrorCB(err) {
+        //    alert(err.responseJSON.ExceptionMessage);
+        //}
 
 
 

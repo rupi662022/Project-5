@@ -28,6 +28,19 @@ namespace PROJECT_5.Models
 
         public GatePass() { }
 
+
+
+
+        //public GatePass(int id, string containerNum, string containerType, string transportCompany, string importer) { 
+        //        this.id = id;
+        //    this.containerNum = containerNum;
+        //    this.containerType = containerType;
+        //    this.transportCompany = transportCompany;
+        //    this.importer = importer;
+        //}
+
+
+
         public GatePass(int id,string containerNum, string containerType, string transportCompany, string importer, string customsBroker, string shippingCompanyAndLine, string storageCertificate, string caseNumber, string note, string officeNote, string goToRepair, string returnFromRepair, string isActive, string userEmail, DateTime createdDate)
         {
             this.id = id;
@@ -72,6 +85,35 @@ namespace PROJECT_5.Models
             return ds.InsertGatePass(this);
             //return res;
         }
+
+        ////בדיקה לטבלה  [HttpGet]
+        //[Route("api/''/''")]
+        public List<GatePass> ReadgatePass(string transportCompany)
+        {
+            DataServices ds = new DataServices();
+            return ds.ReadgatePass(transportCompany);
+        }
+
+
+        //שליחה לארכיון במידה וביצענו מחיקה
+        public void SendGateToArchive(int id)
+        {
+            DataServices ds = new DataServices();
+            ds.SendGateToArchive(id);
+        }
+
+
+        public int UpdateGatePass()
+        {
+            DataServices ds = new DataServices();
+            return ds.UpdateGatePass(this);
+        }
+   
+        //public List<GatePass> ReadgatePassList()
+        //{
+        //    DataServices ds = new DataServices();
+        //    return ds.ReadgatePassList();
+        //}
 
     }
 }

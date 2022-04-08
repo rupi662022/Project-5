@@ -19,5 +19,38 @@ namespace PROJECT_5.Controllers
         }
 
 
+        //בדיקה לטבלה
+        public List<GatePass> Get(string transportCompany)
+        {
+            GatePass gatePass = new GatePass();
+            return gatePass.ReadgatePass(transportCompany);
+        }
+
+        //public List<GatePass> Get()
+        //{
+        //    GatePass gatePass = new GatePass();
+        //    return gatePass.ReadgatePassList ();
+        //}
+
+        public void Put(int id)
+        {
+            GatePass gatePass = new GatePass();
+            gatePass.SendGateToArchive(id);
+        }
+
+
+        //public void Put()
+        //{
+        //    GatePass g = new GatePass();
+        //    g.UpdateGatePass(this);
+        //}
+
+
+        public HttpResponseMessage Put([FromBody] GatePass g)
+        {
+            g.UpdateGatePass();
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
     }
 }

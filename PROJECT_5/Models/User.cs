@@ -12,48 +12,56 @@ namespace PROJECT_5.Models
         string userName;
         string userEmail;
         string userPassword;
-        string userType;
+        string userCompany;
 
         public User() { }
 
-        public User(int userID, string userName, string userEmail, string userPassword, string userType)
+        public User(int userID, string userName, string userEmail, string userPassword, string userCompany)
         {
             UserID = userID;
             UserName = userName;
             UserEmail = userEmail;
             UserPassword = userPassword;
-            UserType = userType;
+            UserCompany = userCompany;
         }
 
         public int UserID { get => userID; set => userID = value; }
         public string UserName { get => userName; set => userName = value; }
         public string UserEmail { get => userEmail; set => userEmail = value; }
         public string UserPassword { get => userPassword; set => userPassword = value; }
-        public string UserType { get => userType; set => userType = value; }
+        public string UserCompany { get => userCompany; set => userCompany = value; }
 
-
-
-        //public void InsertUser()
+        //public User(string userEmail, string userPassword)
         //{
-        //    DataServices ds = new DataServices();
-        //    ds.InsertUser(this);
+
+        //    UserEmail = userEmail;
+        //    UserPassword = userPassword;
+
         //}
-        //public User Read(string email)
-        //{
 
         public void InsertUser()
         {
             DataServices ds = new DataServices();
             ds.InsertUser(this);
         }
-        public User ReadUser(string email)
+
+
+
+        //קריאה
+        public User ReadUser(string userEmail)
         {
-
-
             DataServices ds = new DataServices();
-            return ds.ReadUser(email);
-
+            return ds.ReadUser(userEmail);
         }
+
+        ////}
+        //public User ReadUser()/*---READ test for Procedures*/
+        //{
+        //    //int res = 0;
+        //    DataServices ds = new DataServices();
+        //    ds.ReadUser(this);
+
+        //}
 
 
 

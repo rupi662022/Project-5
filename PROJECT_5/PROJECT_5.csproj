@@ -178,6 +178,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\GatePassController.cs" />
     <Compile Include="Controllers\OCRController.cs" />
+    <Compile Include="Controllers\TransportCompanyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +192,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Demos\basic - Copy.html" />
+    <Content Include="Pages\MyGatePass.html" />
+    <Content Include="Pages\CompanyTable.html" />
+    <Content Include="Pages\data-manipulation.html" />
+    <Content Include="Pages\demos.css" />
+    <Content Include="Pages\registerUser.html" />
+    <Content Include="Pages\TableTest.html" />
+    <Content Include="Scripts\ajaxCallsStub.js" />
     <Content Include="app-assets\css-rtl\app.css" />
     <Content Include="app-assets\css-rtl\app.min.css" />
     <Content Include="app-assets\css-rtl\bootstrap-extended.css" />
@@ -5614,10 +5623,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\icons-2x.png" />
+    <Content Include="css\icons.png" />
+    <Content Include="css\jsgrid.css" />
+    <Content Include="css\theme.css" />
+    <Content Include="Demos\basic.html" />
+    <Content Include="Demos\data-manipulation.html" />
+    <Content Include="Demos\custom-row-renderer.html" />
+    <Content Include="Demos\custom-view.html" />
+    <Content Include="Demos\db.js" />
+    <Content Include="Demos\demos.css" />
+    <Content Include="Demos\validation.html" />
+    <Content Include="external\jquery\jquery-1.8.3.js" />
+    <Content Include="external\qunit\qunit-1.10.0.css" />
+    <Content Include="external\qunit\qunit-1.10.0.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\CreateExample.html" />
     <Content Include="Pages\CreateGatePass.html" />
     <Content Include="Pages\GatePassCreationPage.html" />
     <Content Include="Pages\login.html" />
@@ -6174,6 +6196,44 @@
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\TaskAjax.js" />
+    <Content Include="srcc\fields\jsgrid.field.checkbox.js" />
+    <Content Include="srcc\fields\jsgrid.field.control.js" />
+    <Content Include="srcc\fields\jsgrid.field.js" />
+    <Content Include="srcc\fields\jsgrid.field.number.js" />
+    <Content Include="srcc\fields\jsgrid.field.select.js" />
+    <Content Include="srcc\fields\jsgrid.field.text.js" />
+    <Content Include="srcc\fields\jsgrid.field.textarea.js" />
+    <Content Include="srcc\i18n\cs.js" />
+    <Content Include="srcc\i18n\de.js" />
+    <Content Include="srcc\i18n\el.js" />
+    <Content Include="srcc\i18n\es.js" />
+    <Content Include="srcc\i18n\fa.js" />
+    <Content Include="srcc\i18n\fr.js" />
+    <Content Include="srcc\i18n\he.js" />
+    <Content Include="srcc\i18n\it.js" />
+    <Content Include="srcc\i18n\ja.js" />
+    <Content Include="srcc\i18n\ka.js" />
+    <Content Include="srcc\i18n\Ko.js" />
+    <Content Include="srcc\i18n\lt.js" />
+    <Content Include="srcc\i18n\pl.js" />
+    <Content Include="srcc\i18n\pt-br.js" />
+    <Content Include="srcc\i18n\pt.js" />
+    <Content Include="srcc\i18n\ru.js" />
+    <Content Include="srcc\i18n\tr.js" />
+    <Content Include="srcc\i18n\zh-cn.js" />
+    <Content Include="srcc\i18n\zh-tw.js" />
+    <Content Include="srcc\jsgrid.core.js" />
+    <Content Include="srcc\jsgrid.field.js" />
+    <Content Include="srcc\jsgrid.load-indicator.js" />
+    <Content Include="srcc\jsgrid.load-strategies.js" />
+    <Content Include="srcc\jsgrid.sort-strategies.js" />
+    <Content Include="srcc\jsgrid.validation.js" />
+    <Content Include="test\index.html" />
+    <Content Include="test\hebrew.js" />
+    <Content Include="test\jsgrid.field.tests.js" />
+    <Content Include="test\jsgrid.sort-strategies.tests.js" />
+    <Content Include="test\jsgrid.tests.js" />
+    <Content Include="test\jsgrid.validation.tests.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -6192,6 +6252,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="src\" />
+    <Folder Include="Views\TransportComapny\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
