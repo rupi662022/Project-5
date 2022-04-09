@@ -208,6 +208,7 @@
     <Content Include="css\google-docs.png" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\jquery-ui.js" />
+    <Content Include="css\jquery-ui.structure.css" />
     <Content Include="css\jquery-ui.theme.css" />
     <Content Include="Demos\basic - Copy.html" />
     <Content Include="Pages\GatePassArchieve.html" />
