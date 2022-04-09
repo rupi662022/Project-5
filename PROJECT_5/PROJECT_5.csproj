@@ -192,7 +192,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Demos\archive.html" />
     <Content Include="Demos\basic - Copy.html" />
+    <Content Include="Demos\createGate.html" />
+    <Content Include="Demos\login.html" />
+    <Content Include="Demos\register.html" />
+    <Content Include="Pages\archive.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\CompanyTable.html" />
     <Content Include="Pages\data-manipulation.html" />
