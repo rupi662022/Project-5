@@ -195,6 +195,7 @@
     <Content Include="Demos\archive.html" />
     <Content Include="Demos\basic - Copy.html" />
     <Content Include="Demos\createGate.html" />
+    <Content Include="Demos\driversDemo.html" />
     <Content Include="Demos\login.html" />
     <Content Include="Demos\register.html" />
     <Content Include="Pages\archive.html" />
@@ -5635,7 +5636,6 @@
     <Content Include="Demos\basic.html" />
     <Content Include="Demos\data-manipulation.html" />
     <Content Include="Demos\custom-row-renderer.html" />
-    <Content Include="Demos\custom-view.html" />
     <Content Include="Demos\db.js" />
     <Content Include="Demos\demos.css" />
     <Content Include="Demos\validation.html" />
