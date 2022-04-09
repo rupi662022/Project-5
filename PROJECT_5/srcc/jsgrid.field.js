@@ -14,7 +14,7 @@
 
         visible: true,
         filtering: true,
-        inserting: true,
+        inserting: false,
         editing: true,
         sorting: true,
         sorter: "string", // name of SortStrategy or function to compare elements
@@ -67,6 +67,7 @@
 
             throw Error("wrong sorter for the field \"" + this.name + "\"!");
         }
+
     };
 
     jsGrid.Field = Field;
