@@ -192,13 +192,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\google-docs.png" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\jquery-ui.js" />
+    <Content Include="css\jquery-ui.theme.css" />
     <Content Include="Demos\basic - Copy.html" />
+    <Content Include="Pages\GatePassArchieve.html" />
     <Content Include="Pages\MyGatePass.html" />
     <Content Include="Pages\CompanyTable.html" />
     <Content Include="Pages\data-manipulation.html" />
     <Content Include="Pages\demos.css" />
     <Content Include="Pages\registerUser.html" />
-    <Content Include="Pages\TableTest.html" />
     <Content Include="Scripts\ajaxCallsStub.js" />
     <Content Include="app-assets\css-rtl\app.css" />
     <Content Include="app-assets\css-rtl\app.min.css" />

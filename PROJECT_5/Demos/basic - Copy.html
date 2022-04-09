@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html data-textdirection="rtl">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ניהול גייטפס</title>
@@ -8,9 +8,9 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" />
     <link rel="stylesheet" type="text/css" href="../css/theme.css" />
-
+    <link href="../css/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../external/jquery/jquery-1.8.3.js"></script>
-
+    <script src="../css/jquery-ui.js"></script>
     <script src="../srcc/jsgrid.core.js"></script>
     <script src="../srcc/jsgrid.load-indicator.js"></script>
     <script src="../srcc/jsgrid.load-strategies.js"></script>
@@ -24,26 +24,43 @@
 
     <style>
         #Add {
+            background-color: #3bafda;
             font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
             font-weight: 300;
             font-size: 14px;
-            float:right;
-            margin-right:50px;
+            float: right;
+            margin-right: 50px;
+            margin-bottom: 10PX;
+            color: #fff;
+            border-color: #3bafda;
+            min-width: 8.5rem;
+        }
+
+
+        .my-custom-button {
+            background-image: url('../css/google-docs.png');
+            width: 16px;
+            height: 16px;
+            border: none;
+            cursor: pointer;
         }
     </style>
-   
-    <!--<script src="../test/hebrew.js"></script>-->
+
+
 
     <script>
 
         $(document).ready(function () {
             let transportCompany = "אא";
- 
 
+            //Create New GatePass
             $('#Add').on("click", function () {
                 window.location.href = "basic.html";
             });
 
+
+  
+            //end of set Date
 
             $.ajax({
                 type: "GET",
@@ -52,19 +69,53 @@
                 data: "json"
             }).done(function (data) {
 
+                ///Date to string function
+                var MyDateField = function (config) {
+                    jsGrid.Field.call(this, config);
+                };
+
+                MyDateField.prototype = new jsGrid.Field({
+                    sorter: function (date1, date2) {
+                        return new Date(date1) - new Date(date2);
+                    },
+
+                    itemTemplate: function (value) {
+                        return new Date(value).toDateString();
+                    },
+                    insertTemplate: function (value) {
+                        return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+                    },
+
+                    editTemplate: function (value) {
+                        return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+                    },
+
+                    insertValue: function () {
+                        return this._insertPicker.datepicker("getDate").toISOString();
+                    },
+
+                    editValue: function () {
+                        return this._editPicker.datepicker("getDate").toISOString();
+                    }
+
+
+                });
+                jsGrid.fields.myDateField = MyDateField;
+
+
                 $("#GatePas").jsGrid({
 
                     height: "70%",
                     width: "100%",
                     filtering: true,
                     editing: true,
-                    inserting: true,
+                    /*inserting: true,*/
                     sorting: true,
                     sorter: true,
                     paging: true,
                     autoload: true,
                     pageSize: 15,
-                    pageButtonCount: 5,
+                    pageButtonCount: 7,
                     deleteConfirm: function (item) {
                         return "?יעבור לארכיון. האם אתה בטוח \"" + item.Id + "\" גייטפס ";
                     },
@@ -73,11 +124,13 @@
                         loadData: function (filter) {
                             return $.grep(data, function (item) {
                                 // client-side filtering below (be sure conditions are correct)
-                                return (!filter.Id || item.id.indexOf(filter.id) > -1)
+                                return (!filter.Id || item.Id.indexOf(filter.Id) > -1)
                                     && (!filter.ContainerNum || item.ContainerNum.indexOf(filter.ContainerNum) > -1)
                                     && (!filter.ContainerType || item.ContainerType.indexOf(filter.ContainerType) > -1)
                                     && (!filter.TransportCompany || item.TransportCompany.indexOf(filter.TransportCompany) > -1)
-                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1);
+                                    && (!filter.Importer || item.Importer.indexOf(filter.Importer) > -1)
+                                    && (!filter.Note || item.Note.indexOf(filter.Note) > -1)
+                                    && (!filter.CreatedDate || item.CreatedDate.indexOf(filter.CreatedDate) > -1);
                             });
 
                         },
@@ -103,6 +156,16 @@
                         { name: "ContainerNum", title: 'מספר מכולה', type: "text", width: 100 },
                         { name: "ContainerType", title: "סוג מכולה", type: "text", width: 100 },
                         { name: "TransportCompany", title: "חברת תובלה", type: "text", width: 100 },
+                        {
+                            name: "Note", title: 'הערות',
+                            itemTemplate: function (value) {
+                                return $("<button>").attr("href", value).addClass("my-custom-button")
+                                    .on("click", function () {
+                                        showDetailsDialog("Add", {});
+                                        sendToArchive(item);
+                                    });
+                            }, width: 100, filtering: false, sorting: false
+                        },
 
                         //{
                         //    name: "TransportCompany", title: "חברת תובלה", type: "select", items: function (item) {
@@ -112,28 +175,23 @@
                         //},
 
                         { name: "Importer", type: "text", title: "יבואן", width: 100 },
+                        { name: "CreatedDate", title: "תאריך יצירה", type: "myDateField", width: 100, filtering:true,align: "center" },
 
                         {
                             type: "control",
-                            //insertButtonClass: function () {
-                            //    return $("<button>").attr("type", "button")//מוסיף שורה שלא צריך
-                            //    .on("click", function () {
-                            //        window.location.href = "CreateGatePass.html";
-                            //    });
-                            //}
+
                         },
 
-
-
-
-
-
-
-                        //{ name: "ContainerNum", type: "text", width: 50 },
-                        //{ name: "ContainerType", type: "text", width: 50 },
-                        //{ name: "TransportCompany", type: "text", width: 100 },
-                        //{ name: "Importer", type: "text", width: 100 },
-                        //{ name: "note", type: "select", items: GateList.blabla, valueField: "Id", textField: "Name" } ,
+                        //itemTemplate: function (value, item) {
+                        //    var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+                        //    var $customButton = $("<button>")
+                        //        .addClass("my-custom-button")
+                        //        .click(function (e) {
+                        //            alert("....." + item.yourColumnValue);
+                        //            e.stopPropagation();
+                        //        });
+                        //    return $result.add($customButton);
+                        //}
 
 
 
@@ -171,10 +229,10 @@
 
 
 </head>
-<body>
-    <h1>Basic Scenario</h1>
+<body >
+    <h1>ניהול גייטפסים</h1>
    <div> <button id="Add">הוסף גייטפס חדש</button></div>
-    <div id="GatePas"></div>
+    <div dir="rtl" id="GatePas"></div>
 
     <!--<div id="jsGrid"></div>-->
     <!--  <table class="display nowrap" id="GatePas" style=" width:100%">
